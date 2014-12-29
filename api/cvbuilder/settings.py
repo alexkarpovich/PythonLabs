@@ -1,5 +1,5 @@
 """
-Django settings for api project.
+Django settings for cvbuilder project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -48,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'api.urls'
+ROOT_URLCONF = 'cvbuilder.urls'
 
-WSGI_APPLICATION = 'api.wsgi.application'
+WSGI_APPLICATION = 'cvbuilder.wsgi.application'
 
 
 # Database
@@ -58,8 +58,11 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '',
+        'NAME': 'pythonlabs',
+        'USER': 'dev',
+        'PASSWORD': 'dev'
     }
 }
 

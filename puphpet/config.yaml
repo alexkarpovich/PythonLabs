@@ -62,6 +62,7 @@ server:
     install: '1'
     packages:
         - vim
+        - python-mysqldb
 users_groups:
     install: '1'
     groups: {  }
