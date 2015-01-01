@@ -33,7 +33,7 @@ vagrantfile-local:
                 owner: www-data
                 group: www-data
                 source: ./
-                target: /var/www/local.pythonlabs.dev
+                target: /var/www/local.cvbuilder.dev
                 sync_type: default
                 rsync:
                     args:
@@ -208,7 +208,7 @@ mysql:
         cXiFqjA74hLw:
             grant:
                 - ALL
-            name: pythonlabs
+            name: cvbuilder
             host: localhost
             user: dev
             password: dev

@@ -60,7 +60,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
-        'NAME': 'pythonlabs',
+        'NAME': 'cvbuilder',
         'USER': 'dev',
         'PASSWORD': 'dev'
     }
