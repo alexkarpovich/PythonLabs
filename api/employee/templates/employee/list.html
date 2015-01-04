@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if employees %}
+        <ul>
+        {% for employee in employees %}
+            <li><a href="{% url 'employee:employee_edit' employee.id %}">{{ employee.first_name }} {{ employee.last_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Employees not found.</p>
+    {% endif %}
+
+    <a href="{% url 'employee:employee_add' %}">Add new employee</a>
+{% endblock %}
