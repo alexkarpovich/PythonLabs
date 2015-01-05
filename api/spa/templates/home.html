@@ -1,0 +1,34 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>iTechArt Labs</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link href="{% static '/spa/css/styles.css' %}" media="screen" rel="stylesheet" type="text/css">
+        <link href="{% static '/spa/img/favicon.ico' %}" rel="shortcut icon" type="image/vnd.microsoft.icon">
+
+        <script type="text/javascript" src="{% static '/spa/js/dist/lib.js' %}"></script>
+        <script type="text/javascript" src="{% static '/spa/js/dist/main.js' %}"></script>
+
+        <script type="text/javascript">
+            window.ita = {"currentUser":null,"env":"development","csrf":"c86fb88da6ca609926162d6cf39833e0-33f887e962023582aceb9c2b64240791"};
+        </script>
+    </head>
+    <body>
+        <div class="page-wrapper">
+            <top-menu></top-menu>
+
+            <div id="content">
+                <ui-view></ui-view>
+            </div>
+
+            <div class="page-buffer"></div>
+        </div>
+
+        <footer>&copy; 2015 :iTechArt CV Builder. All rights reserved.</footer>
+    </body>
+</html>

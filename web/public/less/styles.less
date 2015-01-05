@@ -1,0 +1,43 @@
+@import "bootstrap/less/bootstrap";
+@import "font-awesome/less/font-awesome";
+
+@import "layout";
+@import "ita";
+
+@import (inline) "alertify.js/themes/alertify.core.css";
+@import (inline) "alertify.js/themes/alertify.bootstrap.css";
+
+#top-navbar {
+    border-radius: 0;
+
+    .navbar-brand {
+        padding: 5px 10px;
+
+        img {
+            max-height: 40px;
+        }
+    }
+}
+
+#content {
+    margin: 15px;
+}
+
+.home-page,
+.login-page,
+.registration-page,
+.edit-profile-page {
+    width: 400px;
+    margin: 50px auto;
+    border: 5px solid #E7E7E7;
+    padding: 20px;
+}
+
+.home-page {
+    width: 500px;
+}
+
+.link {
+    cursor: pointer;
+}
+

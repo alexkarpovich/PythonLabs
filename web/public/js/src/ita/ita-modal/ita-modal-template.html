@@ -1,0 +1,34 @@
+<div class="modal ita-modal" tabindex="-1" role="dialog" ng-if="$isShown">
+    <div class="modal-dialog" ng-style="{ width : width }">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="titleKey">
+                <button type="button" class="close" data-dismiss="modal" ng-click="$hide()">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">{{ titleKey }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <ita-modal-content ng-if="!loading"></ita-modal-content>
+                <div ng-if="loading" class="loading"></div>
+            </div>
+
+            <div class="modal-footer" ng-if="showFooter && !loading">
+                <button type="button"
+                        class="btn btn-sm"
+                        ng-click="onSubmit()">
+                    <i ng-class="buttons.submit.iconClass"></i>
+                    {{ buttons.submit.labelKey }}
+                </button>
+                <button type="button"
+                        class="btn btn-sm"
+                        ng-click="$hide()"
+                        ng-if="showCancelButton">
+                    <i ng-class="buttons.cancel.iconClass"></i>
+                    {{ buttons.cancel.labelKey }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

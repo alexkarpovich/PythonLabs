@@ -1,0 +1,28 @@
+<h4>Users</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th width="75px"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}} {{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td></td>
+            <td>
+                <a ui-sref="admin.user.edit({userId: user.id})" class="btn btn-default btn-xs" title="Edit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a ng-click="delete(user)" class="btn btn-default btn-xs" title="Delete">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

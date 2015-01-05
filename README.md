@@ -22,8 +22,16 @@ How to install and run server (without virtualenv):
 ----------
 1. run "vagrant up" from rood directory
 2. run "vagrant provision" to be make sure that all software was installed
-2. connect to vagrant (run "vagrant ssh")
-3. go to folder "/var/www/local.cvbuilder.dev/api"
-4. run "python manage.py migrate"
-5. run "python manage.py runserver 0.0.0.0:8000" to start server
-6. use http://192.168.33.60:8000 to see application in your browser
+3. connect to vagrant (run "vagrant ssh")
+4. go to folder "/var/www/local.cvbuilder.dev/api"
+5. run "python manage.py migrate"
+6. run "python manage.py runserver 0.0.0.0:8000" to start server
+7. use http://192.168.33.60:8000 to see application in your browser
+
+How to install tools to write AngularJS code:
+----------
+1. connect to vagrant (run "vagrant ssh")
+2. go to folder "/var/www/local.cvbuilder.dev/web"
+3. run "sudo npm install" to install nodejs packages
+4. run "bower install" to install bower components
+5. run "gulp dev" to run gulp tasks (use -f key to disable js hint. "guld dev -f")

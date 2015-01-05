@@ -1,0 +1,19 @@
+<div class="login-page">
+    <p><img src="/img/confluence-logo.png" alt="iTechArt"></p>
+
+    <ita-form form-name="loginForm" submit="login()" submit-success="submitSuccess(data)">
+        <ita-form-row field-name="email" field-label="Email">
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                <input type="email" ng-model="loginData.email" name="email"  class="form-control" id="email" placeholder="Email" required="">
+            </div>
+        </ita-form-row>
+        <ita-form-row field-name="password" field-label="Password">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                <input type="password" ng-model="loginData.password" name="password" class="form-control" id="password" placeholder="Password" required="">
+            </div>
+        </ita-form-row>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </ita-form>
+</div>

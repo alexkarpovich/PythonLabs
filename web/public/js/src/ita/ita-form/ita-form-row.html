@@ -1,0 +1,5 @@
+<div class="form-group" ng-class="{ 'has-error': hasErrors() }">
+    <label for="{{fieldName}}" ng-if="fieldLabel">{{fieldLabel}}</label>
+    <div ng-transclude></div>
+    <ita-form-row-error-messages messages="errorMessages"></ita-form-row-error-messages>
+</div>
