@@ -13,6 +13,7 @@ How to install and run server:
 7. sudo apt-get install postgresql-server-dev-9.3
 8. sudo apt-get install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev
 9. go to folder "/var/www/local.cvbuilder.dev/api"
-10. run "python manage.py migrate"
-11. run "python manage.py runserver 0.0.0.0:8000" to start server
-12. use http://192.168.33.60:8000 to see application in your browser
+10. run "source /home/venv/labs/bin/activate" 
+11. run "python manage.py migrate"
+12. run "python manage.py runserver 0.0.0.0:8000" to start server
+13. use http://192.168.33.60:8000 to see application in your browser
