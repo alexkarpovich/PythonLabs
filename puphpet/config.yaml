@@ -29,7 +29,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            LqC1sQ8xsZvP:
+            OBvG8OtprgeY:
                 owner: www-data
                 group: www-data
                 source: ./
@@ -62,7 +62,7 @@ server:
     install: '1'
     packages:
         - vim
-        - python-mysqldb
+        - python-psycopg2
 users_groups:
     install: '1'
     groups: {  }
@@ -90,35 +90,7 @@ apache:
         sendfile: 0
     modules:
         - rewrite
-    vhosts:
-        js0fskz6rgw9:
-            servername: awesome.dev
-            serveraliases:
-                - www.awesome.dev
-            docroot: /var/www/awesome
-            port: '80'
-            setenv:
-                - 'APP_ENV dev'
-            directories:
-                cxfawdcy5lhp:
-                    provider: directory
-                    path: /var/www/awesome
-                    options:
-                        - Indexes
-                        - FollowSymlinks
-                        - MultiViews
-                    allow_override:
-                        - All
-                    require:
-                        - all
-                        - granted
-                    custom_fragment: ''
-            engine: php
-            custom_fragment: ''
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_chain: ''
-            ssl_certs_dir: ''
+    vhosts: {  }
     mod_pagespeed: 0
 nginx:
     install: '0'
@@ -127,25 +99,7 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     upstreams: {  }
-    vhosts:
-        glfax6gvx74d:
-            proxy: ''
-            server_name: awesome.dev
-            server_aliases:
-                - www.awesome.dev
-            www_root: /var/www/awesome
-            listen_port: '80'
-            location: \.php$
-            index_files:
-                - index.html
-                - index.htm
-                - index.php
-            envvars:
-                - 'APP_ENV dev'
-            engine: php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
+    vhosts: {  }
 php:
     install: '0'
     version: '56'
@@ -197,7 +151,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        UZ54Vuq8FIHr:
+        XjzGYeI6KY8Y:
             version: ''
 nodejs:
     install: '0'
@@ -207,32 +161,32 @@ python:
     packages:
         - Django
     versions:
-        p3sWtCpUrIx4:
-            version: 3.4.0
+        SdHvyY0aSR87:
+            version: 2.7.6
             virtualenv: '1'
 mysql:
     install: '0'
     override_options: {  }
-    root_password: root
-    adminer: '1'
+    root_password: '123'
+    adminer: 0
     databases:
-        8CybHdcyfAry:
+        fCkgdD2jeiIZ:
             grant:
                 - ALL
-            name: cvbuilder
+            name: dbname
             host: localhost
-            user: dev
-            password: dev
+            user: dbuser
+            password: '123'
             sql_file: ''
 postgresql:
     install: '1'
     settings:
-        root_password: '123'
+        root_password: root
         user_group: postgres
         encoding: UTF8
         version: '9.3'
     databases:
-        UUTfoAC2L3tg:
+        lPL22OQZZQAO:
             grant: ALL
             name: cvbuilder
             user: dev
@@ -257,7 +211,7 @@ mongodb:
         port: '27017'
     databases: {  }
 redis:
-    install: '1'
+    install: '0'
     settings:
         conf_port: '6379'
 mailcatcher:
