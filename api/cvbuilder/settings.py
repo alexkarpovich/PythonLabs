@@ -59,8 +59,8 @@ WSGI_APPLICATION = 'cvbuilder.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'localhost',
         'NAME': 'cvbuilder',
         'USER': 'dev',
         'PASSWORD': 'dev'
