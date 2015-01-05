@@ -29,7 +29,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            LTTBNYoeAfFT:
+            LqC1sQ8xsZvP:
                 owner: www-data
                 group: www-data
                 source: ./
@@ -67,10 +67,13 @@ users_groups:
     install: '1'
     groups: {  }
     users: {  }
+cron:
+    install: '1'
+    jobs: {  }
 firewall:
     install: '1'
     rules:
-        UDPCw5GvWVLt:
+        22e5kdoDd4Se:
             port:
                 - '8000'
             priority: '100'
@@ -88,7 +91,7 @@ apache:
     modules:
         - rewrite
     vhosts:
-        00p3bwi84jz9:
+        js0fskz6rgw9:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -96,12 +99,20 @@ apache:
             port: '80'
             setenv:
                 - 'APP_ENV dev'
-            override:
-                - All
-            options:
-                - Indexes
-                - FollowSymLinks
-                - MultiViews
+            directories:
+                cxfawdcy5lhp:
+                    provider: directory
+                    path: /var/www/awesome
+                    options:
+                        - Indexes
+                        - FollowSymlinks
+                        - MultiViews
+                    allow_override:
+                        - All
+                    require:
+                        - all
+                        - granted
+                    custom_fragment: ''
             engine: php
             custom_fragment: ''
             ssl_cert: ''
@@ -117,7 +128,7 @@ nginx:
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        kum1v5jtbfsu:
+        glfax6gvx74d:
             proxy: ''
             server_name: awesome.dev
             server_aliases:
@@ -186,7 +197,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        R9p1CmISPECl:
+        UZ54Vuq8FIHr:
             version: ''
 nodejs:
     install: '0'
@@ -196,16 +207,16 @@ python:
     packages:
         - Django
     versions:
-        XeyHG69HeMha:
+        p3sWtCpUrIx4:
             version: 3.4.0
             virtualenv: '1'
 mysql:
-    install: '1'
+    install: '0'
     override_options: {  }
     root_password: root
     adminer: '1'
     databases:
-        cXiFqjA74hLw:
+        8CybHdcyfAry:
             grant:
                 - ALL
             name: cvbuilder
@@ -214,14 +225,20 @@ mysql:
             password: dev
             sql_file: ''
 postgresql:
-    install: '0'
+    install: '1'
     settings:
         root_password: '123'
         user_group: postgres
         encoding: UTF8
         version: '9.3'
-    databases: {  }
-    adminer: 0
+    databases:
+        UUTfoAC2L3tg:
+            grant: ALL
+            name: cvbuilder
+            user: dev
+            password: dev
+            sql_file: ''
+    adminer: '1'
 mariadb:
     install: '0'
     override_options: {  }
