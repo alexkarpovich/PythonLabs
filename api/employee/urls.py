@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from employee import views
+import views
 
 urlpatterns = patterns('',
     url(r'^$', views.employee_list, name='employee_list'),
