@@ -160,6 +160,8 @@ python:
     install: '1'
     packages:
         - Django
+        - django-bootstrap3
+        - django-jquery
     versions:
         SdHvyY0aSR87:
             version: 2.7.6
