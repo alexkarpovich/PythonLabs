@@ -28,13 +28,13 @@ gulp.task('clean', function(done) {
 
 gulp.task('copy:fonts', function() {
     return gulp.src(paths.fonts)
-        .pipe(gulp.dest('../api/spa/static/spa/fonts'));
+        .pipe(gulp.dest('../api/static/fonts'));
 });
 
 gulp.task('concat:devLibs', function() {
     return gulp.src(jsLibs(paths.bowerPath.replace('./', '')))
         .pipe(plugins.concat('lib.js'))
-        .pipe(gulp.dest('../api/spa/static/spa/js/dist'));
+        .pipe(gulp.dest('../api/static/js/dist'));
 });
 
 gulp.task('less', function() {
@@ -47,7 +47,7 @@ gulp.task('less', function() {
             ]
         }))
         .pipe(minifyCSS())
-        .pipe(gulp.dest('../api/spa/static/spa/css'));
+        .pipe(gulp.dest('../api/static/css'));
 });
 
 gulp.task('jshint', function() {
@@ -84,7 +84,7 @@ gulp.task('browserify', function () {
             .pipe(source('main.js'))
             .pipe(plugins.duration('bundle time'))
             .pipe(buffer())
-            .pipe(gulp.dest('../api/spa/static/spa/js/dist'))
+            .pipe(gulp.dest('../api/static/js/dist'))
             .pipe(plugins.livereload())
             .on('error', gutil.log);
     };
