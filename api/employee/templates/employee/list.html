@@ -1,12 +1,12 @@
 {% extends 'index/layout.html' %}
 
 {% block breadcrumbs %}
-    <li><a href="/employee">Employees</a></li>
+    <li>Employees</li>
 {% endblock %}
 
 {% block content %}
     <p>
-        <a href="/employee/add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add employee</a>
+        <a href="{% url 'employee:employee_add' %}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add employee</a>
     </p>
 
     {% if employees %}

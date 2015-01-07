@@ -9,7 +9,7 @@ def employee_list(request):
     return render(request, 'employee/list.html', {'employees': employees})
 
 def employee_add(request):
-    return HttpResponse('Add employee')
+    return render(request, 'employee/add.html')
 
 def employee_edit(request, employee_id):
     try:

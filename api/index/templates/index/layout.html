@@ -1,6 +1,5 @@
 {% load staticfiles %}
 {% load bootstrap3 %}
-{% bootstrap_javascript jquery=1 %}
 
 <!DOCTYPE html>
 <html>
@@ -8,11 +7,12 @@
     <meta charset="UTF-8">
     <title>{% block title %}ITA CV Builder{% endblock %}</title>
 
-    <link href="{% bootstrap_css_url %}" rel="stylesheet">
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
     <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon" type="image/vnd.microsoft.icon">
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" ></script>
+    <link href="{% bootstrap_css_url %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+
+    {% bootstrap_javascript jquery=1 %}
 </head>
 <body>
     <div class="page-wrapper">
@@ -24,7 +24,7 @@
             </div>
             <div class="col-sm-10">
                 <ol class="breadcrumb">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'index:index' %}">Home</a></li>
                     {% block breadcrumbs %} {% endblock %}
                 </ol>
                 <div id="content">

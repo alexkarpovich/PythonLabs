@@ -1,6 +1,6 @@
 <nav id="top-navbar" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
-        <a href="/" class="navbar-brand">
+        <a href="{% url 'index:index' %}" class="navbar-brand">
             <img src="/static/img/confluence-logo.png" alt="iTechArt">
         </a>
         <div class="collapse navbar-collapse">
@@ -8,7 +8,7 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/admin">Django Admin</a></li>
+                <li><a href="{% url 'admin:index' %}">Django Admin</a></li>
                 <li><a href="#">Registration</a></li>
                 <li><a href="#">Login</a></li>
             </ul>
