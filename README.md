@@ -35,3 +35,15 @@ How to install tools to write AngularJS code:
 3. run "sudo npm install" to install nodejs packages
 4. run "bower install" to install bower components
 5. run "gulp dev" to run gulp tasks (use -f key to disable js hint. "guld dev -f")
+
+Params to connect to PostgreSQL outside:
+----------
+1. Host name/IP address: "localhost"
+2. Port: "3306"
+3. User Name: "dev"
+4. Password: "dev"
+5. SSH - Host name/IP address: "192.168.33.60"
+6. SSH - Port: "22"
+7. SSH - User Name: "vagrant"
+8. SSH - Authentication method: "Public key"
+9. SSH - Private key: "/path/to/project/puphpet/files/dot/ssh/id_rsa"
