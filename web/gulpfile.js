@@ -38,7 +38,7 @@ gulp.task('concat:devLibs', function() {
 });
 
 gulp.task('less', function() {
-    return gulp.src('./public/less/styles.less')
+    return gulp.src('./public/less/spa-styles.less')
         .pipe(plugins.plumber())
         .pipe(plugins.less({
             paths: [

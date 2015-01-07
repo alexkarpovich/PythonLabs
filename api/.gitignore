@@ -1,3 +1,4 @@
-static/css
+static/css/*
+!static/css/styles.css
 static/fonts
 static/js/dist
