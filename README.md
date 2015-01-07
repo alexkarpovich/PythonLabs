@@ -20,6 +20,8 @@ How to install and run server (with virtualenv):
 
 How to install and run server (without virtualenv):
 ----------
+NOTE: for Windows OS make sure that all files have Unix style line separators. To change line separators in PyCharm run File->Line Separators->LF - Unix and OS X (\n)
+
 1. run "vagrant up" from rood directory
 2. run "vagrant provision" to be make sure that all software was installed
 3. connect to vagrant (run "vagrant ssh")
@@ -32,6 +34,22 @@ How to install tools to write AngularJS code:
 ----------
 1. connect to vagrant (run "vagrant ssh")
 2. go to folder "/var/www/local.cvbuilder.dev/web"
-3. run "sudo npm install" to install nodejs packages
+3. run "npm install" to install nodejs packages
 4. run "bower install" to install bower components
 5. run "gulp dev" to run gulp tasks (use -f key to disable js hint. "guld dev -f")
+
+Params to connect to PostgreSQL outside:
+----------
+1. Host name/IP address: "localhost"
+2. Port: "5432"
+3. Initial database: "cvbuilder"
+4. User Name: "dev"
+5. Password: "dev"
+6. Save password: "checked"
+7. SSH - Host name/IP address: "192.168.33.60"
+8. SSH - Port: "22"
+9. SSH - User Name: "vagrant"
+10. SSH - Authentication method: "Public key"
+11. SSH - Private key: "/path/to/project/puphpet/files/dot/ssh/id_rsa"
+12. Passphrase: "empty"
+13. Save passphrase: "checked"

@@ -18,5 +18,5 @@ def employee_edit(request, employee_id):
         raise Http404
     return render(request, 'employee/edit.html', {'employee': employee})
 
-def employee_delete(request):
+def employee_delete(request, employee_id):
     return HttpResponse('Edit delete')

@@ -26,11 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-STATICFILES_DIRS = (
-    '../public/',
-)
-
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
@@ -48,8 +43,9 @@ INSTALLED_APPS = (
     'spa',
     'bootstrap3',
     'jquery',
-    'employee',
     'index',
+    'employee',
+    'project',
 )
 
 MIDDLEWARE_CLASSES = (
