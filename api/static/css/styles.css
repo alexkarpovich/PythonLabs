@@ -49,3 +49,7 @@ footer {
 .table td.actions {
     width: 100px;
 }
+
+.table td.actions .btn {
+    padding: 2px 5px;
+}
