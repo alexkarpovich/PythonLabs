@@ -32,7 +32,7 @@ footer {
 }
 
 #content {
-    margin: 15px;
+    margin: 15px 0;
 }
 
 .main-menu {
@@ -41,4 +41,11 @@ footer {
 .main-menu ul {
     margin: 0;
     padding: 0
+}
+
+.table {
+    font-size: 14px;
+}
+.table td.actions {
+    width: 100px;
 }
