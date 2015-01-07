@@ -20,6 +20,8 @@ How to install and run server (with virtualenv):
 
 How to install and run server (without virtualenv):
 ----------
+NOTE: for Windows OS make sure that all files have Unix style line separators. To change line separators in PyCharm run File->Line Separators->LF - Unix and OS X (\n)
+
 1. run "vagrant up" from rood directory
 2. run "vagrant provision" to be make sure that all software was installed
 3. connect to vagrant (run "vagrant ssh")
