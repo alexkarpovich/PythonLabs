@@ -7,22 +7,31 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %}ITA CV Builder{% endblock %}</title>
+
+    <link href="{% bootstrap_css_url %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
     <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon" type="image/vnd.microsoft.icon">
+
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" ></script>
 </head>
-<body style="padding-top: 60px;">
-    {% include 'index/top-menu.html' %}
-    <div class="main">
-        <div class="menu col-md-2">
-            {% include 'index/main-menu.html' %}
-        </div>
-        <div class="content">
-            {% block content %} {% endblock %}
+<body>
+    <div class="page-wrapper">
+        {% include 'index/top-menu.html' %}
+
+        <div class="row">
+            <div class="col-sm-2">
+                {% include 'index/main-menu.html' %}
+            </div>
+            <div class="col-sm-10">
+                <div id="content">
+                    {% block content %} {% endblock %}
+                </div>
+            </div>
         </div>
     </div>
+
     <footer>
-            &copy; {% now "Y" %} :iTechArt Labs All rights reserved.
+            &copy; {% now "Y" %} :iTechArt CV Builder. All rights reserved.
     </footer>
 </body>
 </html>

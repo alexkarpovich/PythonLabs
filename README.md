@@ -34,7 +34,7 @@ How to install tools to write AngularJS code:
 ----------
 1. connect to vagrant (run "vagrant ssh")
 2. go to folder "/var/www/local.cvbuilder.dev/web"
-3. run "sudo npm install" to install nodejs packages
+3. run "npm install" to install nodejs packages
 4. run "bower install" to install bower components
 5. run "gulp dev" to run gulp tasks (use -f key to disable js hint. "guld dev -f")
 
