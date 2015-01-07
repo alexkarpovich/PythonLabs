@@ -49,3 +49,5 @@ Params to connect to PostgreSQL outside:
 7. SSH - User Name: "vagrant"
 8. SSH - Authentication method: "Public key"
 9. SSH - Private key: "/path/to/project/puphpet/files/dot/ssh/id_rsa"
+10. Passphrase: empty
+11. Save passphrase: "checked"
