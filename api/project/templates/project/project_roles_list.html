@@ -1,0 +1,30 @@
+{% extends 'index/layout.html' %}
+
+{% block content %}
+<div class="project-roles">
+    <div class="inline-group">
+        <a href="/project/roles/add/" class="btn btn-success btn-md">Add</a>
+    </div>
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for role in project_roles %}
+                <tr>
+                    <td>{{ role.id }}</td>
+                    <td>{{ role.name }}</td>
+                    <td>
+                        <div class="inline-group">
+                            <a href="/project/roles/edit/{{ role.id }}/" class="btn btn-xs btn-warning">Edit</a>
+                            <a href="/project/roles/delete/{{ role.id }}/" class="btn btn-xs btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
