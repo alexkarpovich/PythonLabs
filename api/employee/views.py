@@ -1,8 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.core.context_processors import csrf
-from forms import EmployeeForm
-
+from forms import EmployeeForm, LanguageForm
 from models import Employee, Language
 
 
@@ -36,13 +35,16 @@ def employee_edit(request, employee_id):
 
     return render(request, 'employee/edit.html', {'employee': employee})
 
-def employee_delete(request):
+
+def employee_delete(request, employee_id):
     return HttpResponse('Edit delete')
+
 
 def languages_list(request):
     languages = Language.objects.all()
 
     return render(request, 'language/list.html', {'languages': languages})
+
 
 def language_edit(request, language_id):
     try:
@@ -52,5 +54,22 @@ def language_edit(request, language_id):
 
     return render(request, 'language/edit.html', {'language': language})
 
+
 def language_add(request):
-    return render(request, 'language/add.html', {})
+    if request.method == "POST":
+        f = LanguageForm(request.POST)
+        if f.is_valid():
+            f.save()
+            return HttpResponseRedirect('/employee/languages')
+    else:
+        f = LanguageForm()
+
+    args = {}
+    args.update(csrf(request))
+    args['form'] = f
+
+    return render(request, 'language/add.html', {'form': f})
+
+
+def language_delete(request, language_id):
+    return HttpResponse('Delete')

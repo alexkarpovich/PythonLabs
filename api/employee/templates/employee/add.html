@@ -2,47 +2,53 @@
 
 {% load add_attributes %}
 
+{% block breadcrumbs %}
+    <li><a href="{% url 'employee:employee_list' %}">Employees</a></li>
+    <li>Create Employee</li>
+{% endblock %}
+
 {% block content %}
     {% if form %}
-        <form action="/employee/add/" method="post">
+        <form action="{% url 'employee:employee_add' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form.first_name.errors }}
                         <label for="{{ form.first_name.id_for_label }}">First Name:</label>
-                    {{ form.first_name|add_attributes:"class:form-control" }}
+                    {{ form.first_name|add_attributes:"class:form-control,placeholder:First name" }}
                 </div>
 
                 <div class="form-group">
                     {{ form.last_name.errors }}
                         <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
-                    {{ form.last_name|add_attributes:"class:form-control" }}
+                    {{ form.last_name|add_attributes:"class:form-control,placeholder:Last name" }}
                 </div>
 
                 <div class="form-group">
                     {{ form.email.errors }}
                         <label for="{{ form.email.id_for_label }}">Email:</label>
-                    {{ form.email|add_attributes:"class:form-control" }}
+                    {{ form.email|add_attributes:"class:form-control,placeholder:Email" }}
                 </div>
 
                 <div class="form-group">
                     {{ form.summary_description.errors }}
                         <label for="{{ form.summary_description.id_for_label }}">Summary Description:</label>
-                    {{ form.summary_description|add_attributes:"class:form-control" }}
+                    {{ form.summary_description|add_attributes:"class:form-control,placeholder:Description" }}
                 </div>
 
                 <div class="form-group">
                     {{ form.skype.errors }}
                         <label for="{{ form.skype.id_for_label }}">Skype:</label>
-                    {{ form.skype|add_attributes:"class:form-control" }}
+                    {{ form.skype|add_attributes:"class:form-control,placeholder:Skype" }}
                 </div>
 
                 <div class="form-group">
                     {{ form.phone.errors }}
                         <label for="{{ form.phone.id_for_label }}">Phone:</label>
-                    {{ form.phone|add_attributes:"class:form-control" }}
+                    {{ form.phone|add_attributes:"class:form-control,placeholder:Phone" }}
                 </div>
 
-                <input type="submit" value="Submit" />
+                 <button type="submit" class="btn btn-primary btn-sm">Create Employee</button>
             </form>
     {% endif %}
 {% endblock %}
+
