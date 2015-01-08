@@ -13,14 +13,14 @@
             <th>Actions</th>
         </thead>
         <tbody>
-            {% for role in project_roles %}
+            {% for role in list %}
                 <tr>
                     <td>{{ role.id }}</td>
                     <td>{{ role.name }}</td>
                     <td>
                         <div class="inline-group">
-                            <a href="{% url 'project:role-edit' id=role.id %}" class="btn btn-xs btn-warning">Edit</a>
-                            <a href="{% url 'project:role-delete' id=role.id %}" class="btn btn-xs btn-danger">Delete</a>
+                            <a href="{% url 'project:role-edit' pk=role.id %}" class="btn btn-xs btn-warning">Edit</a>
+                            <a href="{% url 'project:role-delete' pk=role.id %}" class="btn btn-xs btn-danger">Delete</a>
                         </div>
                     </td>
                 </tr>

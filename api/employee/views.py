@@ -1,5 +1,5 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.core.context_processors import csrf
 from forms import EmployeeForm, LanguageForm
 from models import Employee, Language
@@ -28,10 +28,7 @@ def employee_add(request):
 
 
 def employee_edit(request, employee_id):
-    try:
-        employee = Employee.objects.get(pk=employee_id)
-    except Employee.DoesNotExist:
-        raise Http404
+    employee = get_object_or_404(Employee, pk=employee_id)
 
     return render(request, 'employee/edit.html', {'employee': employee})
 
@@ -47,11 +44,7 @@ def languages_list(request):
 
 
 def language_edit(request, language_id):
-    try:
-        language = Language.objects.get(pk=language_id)
-    except Language.DoesNotExist:
-        raise Http404
-
+    language = get_object_or_404(Language, pk=language_id)
     return render(request, 'language/edit.html', {'language': language})
 
 

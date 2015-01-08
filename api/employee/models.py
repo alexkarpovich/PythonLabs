@@ -7,13 +7,13 @@ class Employee(models.Model):
     email = models.CharField(max_length=64)
     summary_description = models.TextField()
     skype = models.CharField(max_length=64)
-    phone = models.CharField(max_length=64)
+    phone = models.CharField(max_length=64, blank=True, default=None)
 
     class Meta:
         db_table = 'employee'
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return '{} {}'.format(self.first_name, self.last_name)
 
 
 class Language(models.Model):
@@ -23,23 +23,25 @@ class Language(models.Model):
         db_table = 'language'
 
     def __str__(self):
-        return self.name
+        return '{}'.format(self.name)
+
+LANG_LEVEL_CHOICES = (
+    ('b', 'Basic'),
+    ('pi', 'Pre-intermediate'),
+    ('i', 'Intermediate'),
+    ('a', 'Advanced'),
+)
 
 
 class EmployeeLanguage(models.Model):
     employee = models.ForeignKey(Employee)
     language = models.ForeignKey(Language)
-    lang_level = (
-        ('b', 'Basic'),
-        ('pi', 'Pre-intermediate'),
-        ('i', 'Intermediate'),
-        ('a', 'Advanced'),
-    )
-    level = models.CharField(max_length=2, choices=lang_level)
+
+    level = models.CharField(max_length=2, choices=LANG_LEVEL_CHOICES)
 
     class Meta:
         db_table = 'employee_language'
         unique_together = ('employee', 'language',)
 
     def __str__(self):
-        return self.employee.last_name + ' ' + self.language.name
+        return '{} {}'.format(self.employee.last_name, self.language.name)
