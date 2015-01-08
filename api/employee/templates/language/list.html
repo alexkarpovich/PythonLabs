@@ -1,0 +1,15 @@
+{% extends 'index/layout.html' %}
+
+{% block content %}
+    {% if languages %}
+        <ul>
+        {% for language in languages %}
+            <li><a href="{% url 'employee:language_edit' language.id %}">{{ language.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Languages not found.</p>
+    {% endif %}
+
+    <a href="{% url 'employee:language_add' %}">Add new language</a>
+{% endblock %}
