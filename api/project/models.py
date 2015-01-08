@@ -18,3 +18,9 @@ class ProjectStatus(models.Model):
 
     def __str__(self):
         return self.name
+
+class ProjectRole(models.Model):
+    name = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.name
