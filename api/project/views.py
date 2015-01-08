@@ -1,48 +1,27 @@
-from django.shortcuts import render, redirect
-from django.core.context_processors import csrf
-from django.shortcuts import get_object_or_404
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
+
 from models import ProjectRole
-from forms import AddProjectRoleForm
 
 
-def project_roles_list(request):
-    project_roles_list = ProjectRole.objects.all()
-    context = {
-        'project_roles':project_roles_list
-    }
-    return render(request, 'project/project_roles_list.html',context)
+class ProjectRoleViewList(ListView):
+    model = ProjectRole
+    context_object_name = 'list'
 
-def project_roles_add(request):
-    if request.method == 'POST':
-        addProjectRoleForm = AddProjectRoleForm(request.POST)
-        addProjectRoleForm.save()
 
-        return redirect('project:role-list')
-    elif request.method == 'GET':
-        context = {}
-        context.update(csrf(request))
-        return render(request, 'project/project_roles_add.html', context)
+class ProjectRoleViewCreate(CreateView):
+    model = ProjectRole
+    success_url = reverse_lazy('project:role-list')
 
-def project_roles_edit(request, id):
-    if request.method == 'POST':
-        instance = get_object_or_404(ProjectRole,pk=id)
-        editProjectRoleForm = AddProjectRoleForm(request.POST, instance=instance)
-        editProjectRoleForm.save()
 
-        return redirect('project:role-list')
-        return ''
-    elif request.method == 'GET':
-        role = get_object_or_404(ProjectRole, pk=id)
-        context = {
-            'role': role
-        }
-        context.update(csrf(request))
-        return render(request, 'project/project_roles_edit.html', context)
-    return ""
+class ProjectRoleViewUpdate(UpdateView):
+    model = ProjectRole
+    success_url = reverse_lazy('project:role-list')
+    template_name_suffix = '_edit'
+    context_object_name = 'role'
 
-def project_roles_delete(request, id):
-    if request.method == 'GET':
-        role = get_object_or_404(ProjectRole,pk=id)
-        if role:
-            role.delete()
-    return redirect('project:role-list')
+
+class ProjectRoleViewDelete(DeleteView):
+    model = ProjectRole
+    success_url = reverse_lazy('project:role-list')

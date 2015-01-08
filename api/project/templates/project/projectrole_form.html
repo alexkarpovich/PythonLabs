@@ -8,6 +8,7 @@
         <div class="panel-body">
             {% csrf_token %}
             <div class="form-group">
+                {{ form.name.errors }}
                 <input type="text" name="name" class="form-control" placeholder="Project role name">
             </div>
         </div>
