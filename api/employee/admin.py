@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Employee, Language, EmployeeLanguage
+from models import Employee, Language, EmployeeLanguage, Education, EmployeeEducation
 
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'skype', 'phone')
@@ -8,4 +8,6 @@ class EmployeeAdmin(admin.ModelAdmin):
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Language)
 admin.site.register(EmployeeLanguage)
+admin.site.register(Education)
+admin.site.register(EmployeeEducation)
 

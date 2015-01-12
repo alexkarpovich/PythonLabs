@@ -45,3 +45,27 @@ class EmployeeLanguage(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.employee.last_name, self.language.name)
+
+
+class Education(models.Model):
+    name = models.CharField(max_length=45, unique=True)
+
+    class Meta:
+        db_table = 'education'
+
+    def __str__(self):
+        return '{}'.format(self.name)
+
+
+class EmployeeEducation(models.Model):
+    employee = models.ForeignKey(Employee)
+    education = models.ForeignKey(Education)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    class Meta:
+        db_table = 'employee_education'
+        unique_together = ('employee', 'education',)
+
+    def __str__(self):
+        return '{} {}'.format(self.employee.last_name, self.education.name)
