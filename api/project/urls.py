@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
 import views
-
+from .views import ProjectRoleViewList, ProjectRoleViewCreate, ProjectRoleViewUpdate, ProjectRoleViewDelete
 urlpatterns = patterns('',
     url(r'^role/list/$', views.project_roles_list, name='role-list'),
     url(r'^role/add/$', views.project_roles_add, name='role-add'),
