@@ -1,0 +1,31 @@
+{% extends 'index/layout.html' %}
+
+{% block content %}
+<div class="project-roles">
+    <p>
+        <a href="{% url 'project:position-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for position in list %}
+                <tr>
+                    <td>{{ position.id }}</td>
+                    <td>{{ position.name }}</td>
+                    <td>
+                        <div class="inline-group">
+                            <a href="{% url 'project:position-edit' pk=position.id %}" class="btn btn-xs btn-warning">Edit</a>
+                            <a href="{% url 'project:position-delete' pk=position.id %}" class="btn btn-xs btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
