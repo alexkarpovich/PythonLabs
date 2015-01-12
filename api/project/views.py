@@ -8,6 +8,7 @@ from models import ProjectRole
 class ProjectRoleViewList(ListView):
     model = ProjectRole
     context_object_name = 'list'
+    paginate_by = 1
 
 
 class ProjectRoleViewCreate(CreateView):
