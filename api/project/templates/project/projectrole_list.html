@@ -1,9 +1,14 @@
 {% extends 'index/layout.html' %}
 
+{% block breadcrumbs %}
+    <li>Project</li>
+    <li>Roles</li>
+{% endblock %}
+
 {% block content %}
 <div class="project-roles">
     <p>
-        <a href="{% url 'project:role-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add</a>
+        <a href="{% url 'project:role-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project role</a>
     </p>
 
     <table class="table">

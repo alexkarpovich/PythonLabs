@@ -25,3 +25,9 @@ class ProjectRole(models.Model):
 
     def __str__(self):
         return '{}'.format(self.name)
+
+class ProjectParticipation(models.Model):
+    name = models.CharField(max_length=265, blank=False)
+
+    def __str__(self):
+       return '{}'.format(self.name)
