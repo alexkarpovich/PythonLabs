@@ -28,7 +28,27 @@ class ProjectRoleViewDelete(DeleteView):
     success_url = reverse_lazy('project:role-list')
 
 
+# Project
 class ProjectViewList(ListView):
     model = Project
     context_object_name = 'projects'
     template_name = 'project/project/list.html'
+
+
+class ProjectViewCreate(CreateView):
+    model = Project
+    success_url = reverse_lazy('project:project-list')
+    template_name = 'project/project/add.html'
+
+
+class ProjectViewUpdate(UpdateView):
+    model = Project
+    context_object_name = 'project'
+    success_url = reverse_lazy('project:project-list')
+    template_name = 'project/project/edit.html'
+
+
+class ProjectViewDelete(DeleteView):
+    model = Project
+    success_url = reverse_lazy('project:project-list')
+    template_name = 'project/project/delete.html'
