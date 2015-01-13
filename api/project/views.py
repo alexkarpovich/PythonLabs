@@ -2,7 +2,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
-from models import ProjectRole
+from models import ProjectRole, Project
 
 
 class ProjectRoleViewList(ListView):
@@ -25,3 +25,9 @@ class ProjectRoleViewUpdate(UpdateView):
 class ProjectRoleViewDelete(DeleteView):
     model = ProjectRole
     success_url = reverse_lazy('project:role-list')
+
+
+class ProjectViewList(ListView):
+    model = Project
+    context_object_name = 'projects'
+    template_name = 'project/project/list.html'
