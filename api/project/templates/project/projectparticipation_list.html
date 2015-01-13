@@ -1,0 +1,39 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li>Project</li>
+    <li>Participations</li>
+{% endblock %}
+
+{% block content %}
+<div class="project-participations">
+    <p>
+        <a href="{% url 'project:participation-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add new participation</a>
+    </p>
+    {% if list %}
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for participation in list %}
+                <tr>
+                    <td>{{ participation.id }}</td>
+                    <td>{{ participation.name }}</td>
+                    <td>
+                        <div class="inline-group">
+                            <a href="{% url 'project:participation-edit' pk=participation.id %}" class="btn btn-xs btn-warning">Edit</a>
+                            <a href="{% url 'project:participation-delete' pk=participation.id %}" class="btn btn-xs btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-info" role="alert">Project participations not found.</div>
+    {% endif %}
+</div>
+{% endblock %}
