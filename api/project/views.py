@@ -3,25 +3,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 from models import ProjectRole, ProjectParticipation
+from api.index.views import ExtendedListView
 
 
-class ProjectRoleViewList(ListView):
+class ProjectRoleViewList(ExtendedListView):
     model = ProjectRole
-    context_object_name = 'list'
-    paginate_by = 10
-
-    def get_queryset(self):
-        sort_by = self.request.GET.get('sort_by')
-        fields = ProjectRole._meta.get_all_field_names()
-        if sort_by not in fields:
-            sort_by = 'id'
-        qs = super(ProjectRoleViewList,self).get_queryset().order_by(sort_by)
-        return qs
-
-    def get_context_data(self, **kwargs):
-        context = super(ProjectRoleViewList, self).get_context_data(**kwargs)
-        context['sort_by'] = self.request.GET.get('sort_by')
-        return context
 
 
 class ProjectRoleViewCreate(CreateView):
@@ -41,23 +27,8 @@ class ProjectRoleViewDelete(DeleteView):
     success_url = reverse_lazy('project:role-list')
 
 
-class ParticipationViewList(ListView):
+class ParticipationViewList(ExtendedListView):
     model = ProjectParticipation
-    context_object_name = 'list'
-    paginate_by = 10
-
-    def get_queryset(self):
-        sort_by = self.request.GET.get('sort_by')
-        fields = ProjectParticipation._meta.get_all_field_names()
-        if sort_by not in fields:
-            sort_by = 'id'
-        qs = super(ParticipationViewList,self).get_queryset().order_by(sort_by)
-        return qs
-
-    def get_context_data(self, **kwargs):
-        context = super(ParticipationViewList, self).get_context_data(**kwargs)
-        context['sort_by'] = self.request.GET.get('sort_by')
-        return context
 
 
 class ParticipationViewCreate(CreateView):
