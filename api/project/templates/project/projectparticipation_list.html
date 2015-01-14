@@ -7,9 +7,16 @@
 
 {% block content %}
 <div class="project-participations">
-    <p>
-        <a href="{% url 'project:participation-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add new participation</a>
-    </p>
+    <div class="inline-group">
+        <div class="col-md-2"><a href="{% url 'project:participation-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project participation</a></div>
+        <div class="col-md-2 input-group">
+        <div class="input-group-addon">Sort by: </div>
+            <select class="form-control bg-primary input-sm" onchange="document.location=this.options[this.selectedIndex].value">
+              <option value="?page={{ page_obj.number }}&sort_by=id" {% ifequal sort_by 'id' %}selected{% endifequal %}>Id</option>
+              <option value="?page={{ page_obj.number }}&sort_by=name" {% ifequal sort_by 'name' %}selected{% endifequal %}>Name</option>
+            </select>
+        </div>
+    </div>
     {% if list %}
     <table class="table">
         <thead>
@@ -34,14 +41,14 @@
     </table>
     <nav>
         <ul class="pager">
-           {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}&sort_by={{ sort_by }}">Previous</a></li>
             {% else %}
             <li class="disabled"><a href="#">Previous</a></li>
             {% endif %}
             <li><a href="#">{{ page_obj.number }}</a></li>
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}&sort_by={{ sort_by }}">Next</a></li>
             {% else %}
             <li class="disabled"><a href="#">Next</a></li>
             {% endif %}
