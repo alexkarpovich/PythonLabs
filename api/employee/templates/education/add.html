@@ -1,0 +1,25 @@
+{% extends 'index/layout.html' %}
+
+{% load add_attributes %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'employee:educations_list' %}">Languages</a></li>
+    <li>Add New Language</li>
+{% endblock %}
+
+{% block content %}
+    {% if form %}
+        <form action="{% url 'employee:education_add' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="bg-danger">
+                    {{ form.name.errors }}
+                </div>
+                <label for="{{ form.name.id_for_label }}">Education:</label>
+                {{ form.name|add_attributes:"class:form-control,placeholder:Language name" }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Add New Education</button>
+        </form>
+    {% endif %}
+{% endblock %}
