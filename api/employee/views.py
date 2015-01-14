@@ -1,8 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.context_processors import csrf
 from forms import EmployeeForm, LanguageForm, EducationForm
-from models import Employee, Language, Education
+from .models import Employee, Language, Education
 
 
 def employee_list(request):
@@ -53,7 +54,7 @@ def language_add(request):
         f = LanguageForm(request.POST)
         if f.is_valid():
             f.save()
-            return HttpResponseRedirect('/employee/languages')
+            return HttpResponseRedirect(reverse('employee:languages_list'))
     else:
         f = LanguageForm()
 
@@ -67,7 +68,7 @@ def language_add(request):
 def language_delete(request, language_id):
     language = Language.objects.get(id=language_id)
     language.delete()
-    return HttpResponseRedirect('/employee/languages/')
+    return HttpResponseRedirect(reverse('employee:languages_list'))
 
 
 def educations_list(request):
@@ -86,7 +87,7 @@ def education_add(request):
         f = EducationForm(request.POST)
         if f.is_valid():
             f.save()
-            return HttpResponseRedirect('/employee/educations')
+            return HttpResponseRedirect(reverse('employee:educations_list'))
     else:
         f = EducationForm()
 
@@ -100,5 +101,5 @@ def education_add(request):
 def education_delete(request, education_id):
     education = Education.objects.get(id=education_id)
     education.delete()
-    return HttpResponseRedirect('/employee/educations/')
+    return HttpResponseRedirect(reverse('employee:educations_list'))
 

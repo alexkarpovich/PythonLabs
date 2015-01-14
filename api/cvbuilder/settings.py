@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'index',
     'employee',
     'project',
+    'tag'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,4 +101,9 @@ STATIC_ROOT = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     'static/',
+)
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, "fixtures"),
+    'fixtures/',
 )

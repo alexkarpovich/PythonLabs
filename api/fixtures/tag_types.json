@@ -1,0 +1,1 @@
+[{"fields": {"name": "Tool"}, "model": "tag.tagtype", "pk": 1}, {"fields": {"name": "Technology"}, "model": "tag.tagtype", "pk": 2}, {"fields": {"name": "Skill"}, "model": "tag.tagtype", "pk": 3}]
