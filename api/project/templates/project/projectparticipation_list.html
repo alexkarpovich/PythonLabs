@@ -2,13 +2,13 @@
 
 {% block breadcrumbs %}
     <li>Project</li>
-    <li>Roles</li>
+    <li>Participations</li>
 {% endblock %}
 
 {% block content %}
-<div class="project-roles">
+<div class="project-participations">
     <div class="inline-group">
-        <div class="col-md-2"><a href="{% url 'project:role-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project role</a></div>
+        <div class="col-md-2"><a href="{% url 'project:participation-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project participation</a></div>
         <div class="col-md-2 input-group">
         <div class="input-group-addon">Sort by: </div>
             <select class="form-control bg-primary input-sm" onchange="document.location=this.options[this.selectedIndex].value">
@@ -25,14 +25,14 @@
             <th>Actions</th>
         </thead>
         <tbody>
-            {% for role in list %}
+            {% for participation in list %}
                 <tr>
-                    <td>{{ role.id }}</td>
-                    <td>{{ role.name }}</td>
+                    <td>{{ participation.id }}</td>
+                    <td>{{ participation.name }}</td>
                     <td>
                         <div class="inline-group">
-                            <a href="{% url 'project:role-edit' pk=role.id %}" class="btn btn-xs btn-warning">Edit</a>
-                            <a href="{% url 'project:role-delete' pk=role.id %}" class="btn btn-xs btn-danger">Delete</a>
+                            <a href="{% url 'project:participation-edit' pk=participation.id %}" class="btn btn-xs btn-warning">Edit</a>
+                            <a href="{% url 'project:participation-delete' pk=participation.id %}" class="btn btn-xs btn-danger">Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -55,8 +55,7 @@
         </ul>
     </nav>
     {% else %}
-        <div class="alert alert-info" role="alert">Project roles not found.</div>
+        <div class="alert alert-info" role="alert">Project participations not found.</div>
     {% endif %}
-
 </div>
 {% endblock %}
