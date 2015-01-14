@@ -8,6 +8,7 @@ from models import ProjectRole, ProjectParticipation
 class ProjectRoleViewList(ListView):
     model = ProjectRole
     context_object_name = 'list'
+    paginate_by = 10
 
 
 class ProjectRoleViewCreate(CreateView):
@@ -30,6 +31,7 @@ class ProjectRoleViewDelete(DeleteView):
 class ParticipationViewList(ListView):
     model = ProjectParticipation
     context_object_name = 'list'
+    paginate_by = 10
 
 
 class ParticipationViewCreate(CreateView):

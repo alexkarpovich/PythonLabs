@@ -10,7 +10,7 @@
     <p>
         <a href="{% url 'project:role-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project role</a>
     </p>
-
+    {% if list %}
     <table class="table">
         <thead>
             <th>Id</th>
@@ -32,5 +32,24 @@
             {% endfor %}
         </tbody>
     </table>
+    <nav>
+        <ul class="pager">
+             {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% else %}
+            <li class="disabled"><a href="#">Previous</a></li>
+            {% endif %}
+            <li><a href="#">{{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            {% else %}
+            <li class="disabled"><a href="#">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% else %}
+        <div class="alert alert-info" role="alert">Project roles not found.</div>
+    {% endif %}
+
 </div>
 {% endblock %}
