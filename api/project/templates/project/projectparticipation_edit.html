@@ -7,22 +7,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-offset-3 col-md-6">
-    <div class="panel panel-default">
-        <div class="panel-heading">Edit project participation</div>
-        <form name="edit-project-participation" method="post" action="{% url 'project:participation-edit' pk=participation.id %}">
-        <div class="panel-body">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.name.errors }}
-                <label for="{{ form.name.id_for_label }}">Participation name</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Project participation name" value="{{ participation.name }}">
-            </div>
+    <form name="edit-project-participation" method="post" action="{% url 'project:participation-edit' pk=participation.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name.errors }}
+            <label for="{{ form.name.id_for_label }}">Participation name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Project participation name" value="{{ participation.name }}">
         </div>
-        <div class="panel-footer">
-            <input type="submit" class="btn btn-warning btn-md btn-block" value="Edit participation">
-        </div>
-        </form>
-    </div>
-</div>
+        <input type="submit" class="btn btn-primary btn-sm" value="Edit participation">
+    </form>
 {% endblock %}
