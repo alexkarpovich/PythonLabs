@@ -6,6 +6,7 @@ class TagType(models.Model):
 
     class Meta:
         db_table = 'tag_type'
+        ordering = ['name']
 
     def __str__(self):
         return '{}'.format(self.name)
