@@ -3,12 +3,11 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView
 from .models import Tag, TagType, TagCategory
 from .forms import TagForm, TagCategoryForm, TagTypeForm
+from api.base.views import BaseListView
 
 
-class TagViewList(ListView):
+class TagViewList(BaseListView):
     model = Tag
-    fields = ['name']
-    context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
 
 
@@ -34,10 +33,8 @@ class TagViewCreate(FormView):
         return super(TagViewCreate, self).form_valid(form)
 
 
-class TagCategoryViewList(ListView):
+class TagCategoryViewList(BaseListView):
     model = TagCategory
-    fields = ['name']
-    context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
 
 
@@ -63,10 +60,8 @@ class TagCategoryViewCreate(FormView):
         return super(TagCategoryViewCreate, self).form_valid(form)
 
 
-class TagTypeViewList(ListView):
+class TagTypeViewList(BaseListView):
     model = TagType
-    fields = ['name']
-    context_object_name = 'list'
     success_url = reverse_lazy('tag:type-list')
 
 
