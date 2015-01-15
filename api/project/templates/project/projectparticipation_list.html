@@ -17,23 +17,21 @@
             </select>
         </div>
     </div>
-    {% if list %}
-    <table class="table">
+    {% if object_list %}
+    <table class="table table-striped table-hover">
         <thead>
             <th>Id</th>
             <th>Name</th>
             <th>Actions</th>
         </thead>
         <tbody>
-            {% for participation in list %}
+            {% for participation in object_list %}
                 <tr>
                     <td>{{ participation.id }}</td>
                     <td>{{ participation.name }}</td>
-                    <td>
-                        <div class="inline-group">
-                            <a href="{% url 'project:participation-edit' pk=participation.id %}" class="btn btn-xs btn-warning">Edit</a>
-                            <a href="{% url 'project:participation-delete' pk=participation.id %}" class="btn btn-xs btn-danger">Delete</a>
-                        </div>
+                    <td class="actions">
+                        <a href="{% url 'project:participation-edit' pk=participation.id %}" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a href="{% url 'project:participation-delete' pk=participation.id %}" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
             {% endfor %}

@@ -3,10 +3,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 from models import ProjectRole, ProjectParticipation
-from api.index.views import ExtendedListView
+from api.base.views import BaseListView
 
 
-class ProjectRoleViewList(ExtendedListView):
+class ProjectRoleViewList(BaseListView):
     model = ProjectRole
 
 
@@ -27,7 +27,7 @@ class ProjectRoleViewDelete(DeleteView):
     success_url = reverse_lazy('project:role-list')
 
 
-class ParticipationViewList(ExtendedListView):
+class ParticipationViewList(BaseListView):
     model = ProjectParticipation
 
 
