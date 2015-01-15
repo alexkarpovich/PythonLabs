@@ -1,8 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.context_processors import csrf
-from forms import EmployeeForm, LanguageForm
-from models import Employee, Language
+from forms import EmployeeForm, LanguageForm, EducationForm
+from .models import Employee, Language, Education
 
 
 def employee_list(request):
@@ -53,7 +54,7 @@ def language_add(request):
         f = LanguageForm(request.POST)
         if f.is_valid():
             f.save()
-            return HttpResponseRedirect('/employee/languages')
+            return HttpResponseRedirect(reverse('employee:languages_list'))
     else:
         f = LanguageForm()
 
@@ -65,4 +66,40 @@ def language_add(request):
 
 
 def language_delete(request, language_id):
-    return HttpResponse('Delete')
+    language = Language.objects.get(id=language_id)
+    language.delete()
+    return HttpResponseRedirect(reverse('employee:languages_list'))
+
+
+def educations_list(request):
+    educations = Education.objects.all()
+
+    return render(request, 'education/list.html', {'educations': educations})
+
+
+def education_edit(request, language_id):
+    education = get_object_or_404(Education, pk=language_id)
+    return render(request, 'education/edit.html', {'education': education})
+
+
+def education_add(request):
+    if request.method == "POST":
+        f = EducationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            return HttpResponseRedirect(reverse('employee:educations_list'))
+    else:
+        f = EducationForm()
+
+    args = {}
+    args.update(csrf(request))
+    args['form'] = f
+
+    return render(request, 'education/add.html', {'form': f})
+
+
+def education_delete(request, education_id):
+    education = Education.objects.get(id=education_id)
+    education.delete()
+    return HttpResponseRedirect(reverse('employee:educations_list'))
+

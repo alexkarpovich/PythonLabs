@@ -1,15 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
-from models import ProjectRole, ProjectPosition
-from project.forms import ProjectPositionForm
+from models import ProjectRole, ProjectParticipation
+from api.base.views import BaseListView
 
 
-class ProjectRoleViewList(ListView):
+class ProjectRoleViewList(BaseListView):
     model = ProjectRole
-    context_object_name = 'list'
 
 
 class ProjectRoleViewCreate(CreateView):
@@ -29,35 +27,22 @@ class ProjectRoleViewDelete(DeleteView):
     success_url = reverse_lazy('project:role-list')
 
 
-def project_position_list(request):
-    return render(request, 'project_position/list.html',
-                  {'list': ProjectPosition.objects.all()})
+class ParticipationViewList(BaseListView):
+    model = ProjectParticipation
 
 
-def project_position_add(request):
-    if request.method == 'POST':
-        form = ProjectPositionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('project:position-list')
-
-    return render(request, 'project_position/form.html',
-                  {'form': ProjectPositionForm()})
+class ParticipationViewCreate(CreateView):
+    model = ProjectParticipation
+    success_url = reverse_lazy('project:participation-list')
 
 
-def project_position_edit(request, pk):
-    position = get_object_or_404(ProjectPosition, pk=pk)
-    if request.method == 'POST':
-        form = ProjectPositionForm(request.POST, instance=position)
-        if form.is_valid():
-            form.save()
-            return redirect('project:position-list')
-
-    return render(request, 'project_position/form.html',
-                  {'form': ProjectPositionForm(instance=position)})
+class ParticipationViewUpdate(UpdateView):
+    model = ProjectParticipation
+    success_url = reverse_lazy('project:participation-list')
+    template_name_suffix = '_edit'
+    context_object_name = 'participation'
 
 
-def project_position_delete(request, pk):
-    position = get_object_or_404(ProjectPosition, pk=pk)
-    position.delete()
-    return redirect('project:position-list')
+class ParticipationViewDelete(DeleteView):
+    model = ProjectParticipation
+    success_url = reverse_lazy('project:participation-list')

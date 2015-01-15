@@ -1,5 +1,11 @@
 {% extends 'index/layout.html' %}
 
+{% block breadcrumbs %}
+    <li>Project</li>
+    <li><a href="{% url 'project:role-list' %}">Roles</a></li>
+    <li>Add</li>
+{% endblock %}
+
 {% block content %}
 <div class="col-md-offset-3 col-md-6">
     <div class="panel panel-default">
@@ -9,11 +15,12 @@
             {% csrf_token %}
             <div class="form-group">
                 {{ form.name.errors }}
+                <label for="{{ form.name.id_for_label }}">Role name:</label>
                 <input type="text" name="name" class="form-control" placeholder="Project role name">
             </div>
         </div>
         <div class="panel-footer">
-            <input type="submit" class="btn btn-success btn-md btn-block" value="Add">
+            <input type="submit" class="btn btn-primary btn-md btn-block" value="Add project role">
         </div>
         </form>
     </div>

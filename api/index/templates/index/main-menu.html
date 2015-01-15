@@ -4,8 +4,11 @@
     <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Projects</a>
     <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Project statuses</a>
     <a class="list-group-item" href="{% url 'project:role-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project roles</a>
-    <a class="list-group-item" href="{% url 'project:position-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project positions</a>
-    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Project participations</a>
+    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Project positions</a>
+    <a class="list-group-item" href="{% url 'project:participation-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project participations</a>
     <a class="list-group-item" href="{% url 'employee:languages_list' %}"><i class="glyphicon glyphicon-th-list"></i> Languages</a>
-    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Educations</a>
+    <a class="list-group-item" href="{% url 'employee:educations_list' %}"><i class="glyphicon glyphicon-th-list"></i> Educations</a>
+    <a class="list-group-item" href="{% url 'tag:tag-list' %}"><i class="glyphicon glyphicon-th-list"></i> Tags</a>
+    <a class="list-group-item" href="{% url 'tag:category-list' %}"><i class="glyphicon glyphicon-th-list"></i> Tag Categories</a>
+    <a class="list-group-item" href="{% url 'tag:type-list' %}"><i class="glyphicon glyphicon-th-list"></i> Tag Types</a>
 </div>
