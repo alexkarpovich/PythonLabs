@@ -9,10 +9,7 @@ vagrantfile-local:
         chosen_provider: virtualbox
         network:
             private_network: 192.168.33.60
-            forwarded_port:
-                Nhcz6qvYNC4r:
-                    host: '7246'
-                    guest: '22'
+            forwarded_port: {  }
         post_up_message: ''
         provider:
             virtualbox:
@@ -36,7 +33,7 @@ vagrantfile-local:
                 owner: www-data
                 group: www-data
                 source: ./
-                target: /var/www
+                target: /var/www/local.cvbuilder.dev
                 sync_type: default
                 rsync:
                     args:
@@ -65,8 +62,7 @@ server:
     install: '1'
     packages:
         - vim
-        - libpq-dev
-        - python-dev
+        - python-psycopg2
 users_groups:
     install: '1'
     groups: {  }
@@ -170,10 +166,10 @@ python:
         - Django
         - django-bootstrap3
         - django-jquery
-        - psycopg2
     versions:
         SdHvyY0aSR87:
             version: 2.7.6
+            virtualenv: '1'
 mysql:
     install: '0'
     override_options: {  }
@@ -259,4 +255,3 @@ solr:
     settings:
         version: 4.10.2
         port: '8984'
-
