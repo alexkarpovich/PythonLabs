@@ -1,0 +1,18 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'project:position-list' %}">Positions</a></li>
+    <li>Edit position</li>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.errors }}
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="{{ position.name }}">
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Edit Position</button>
+    </form>
+{% endblock %}

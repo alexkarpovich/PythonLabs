@@ -31,3 +31,9 @@ class ProjectParticipation(models.Model):
 
     def __str__(self):
        return '{}'.format(self.name)
+
+class ProjectPosition(models.Model):
+    name = models.CharField(max_length=64, blank=False)
+
+    def __str__(self):
+       return '{}'.format(self.name)
