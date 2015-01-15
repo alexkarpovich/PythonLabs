@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^language/add/$', views.language_add, name='language_add'),
     url(r'^language/delete/(?P<language_id>\d+)$', views.language_delete, name='language_delete'),
     url(r'^educations/$', views.educations_list, name='educations_list'),
-    url(r'^education/edit/(?P<education_id>\d+)$', views.language_edit, name='education_edit'),
+    url(r'^education/edit/(?P<education_id>\d+)$', views.education_edit, name='education_edit'),
     url(r'^education/add/$', views.education_add, name='education_add'),
     url(r'^education/delete/(?P<education_id>\d+)$', views.education_delete, name='education_delete'),
 )

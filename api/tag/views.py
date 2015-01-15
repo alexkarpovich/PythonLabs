@@ -3,13 +3,15 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView
 from .models import Tag, TagType, TagCategory
 from .forms import TagForm, TagCategoryForm, TagTypeForm
+from api.index.views import ExtendedListView
 
 
-class TagViewList(ListView):
+class TagViewList(ExtendedListView):
     model = Tag
     fields = ['name']
     context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
+    paginate_by = 7
 
 
 class TagViewUpdate(UpdateView):
@@ -34,11 +36,12 @@ class TagViewCreate(FormView):
         return super(TagViewCreate, self).form_valid(form)
 
 
-class TagCategoryViewList(ListView):
+class TagCategoryViewList(ExtendedListView):
     model = TagCategory
     fields = ['name']
     context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
+    paginate_by = 7
 
 
 class TagCategoryViewUpdate(UpdateView):
@@ -63,11 +66,12 @@ class TagCategoryViewCreate(FormView):
         return super(TagCategoryViewCreate, self).form_valid(form)
 
 
-class TagTypeViewList(ListView):
+class TagTypeViewList(ExtendedListView):
     model = TagType
     fields = ['name']
     context_object_name = 'list'
     success_url = reverse_lazy('tag:type-list')
+    paginate_by = 7
 
 
 class TagTypeViewUpdate(UpdateView):
@@ -90,4 +94,3 @@ class TagTypeViewCreate(FormView):
     def form_valid(self, form):
         form.save()
         return super(TagTypeViewCreate, self).form_valid(form)
-

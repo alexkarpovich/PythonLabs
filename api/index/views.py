@@ -5,6 +5,7 @@ from django.views.generic import ListView
 def index(request):
     return render(request, 'index/index.html', {})
 
+
 class ExtendedListView(ListView):
     context_object_name = 'list'
     paginate_by = 10

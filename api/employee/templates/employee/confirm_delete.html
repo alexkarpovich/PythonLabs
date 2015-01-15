@@ -1,0 +1,20 @@
+{% extends 'index/layout.html' %}
+
+{% load add_attributes %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'employee:employee_list' %}">Employees</a></li>
+    <li>Delete Employee</li>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'employee:employee_delete' employee_id=employee.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <p>Are you sure you want to delete "{{ employee }}"?</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm">Confirm</button>
+    </form>
+{% endblock %}
+
