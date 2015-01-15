@@ -6,11 +6,18 @@
 
 
 {% block content %}
-    <p>
-        <a href="{% url 'tag:type-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add new tag category</a>
-    </p>
+    <div class="inline-group">
+        <div class="col-md-2"><a href="{% url 'tag:type-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add new tag type</a></div>
+        <div class="col-md-2 input-group">
+        <div class="input-group-addon">Sort by: </div>
+            <select class="form-control bg-primary input-sm" onchange="document.location=this.options[this.selectedIndex].value">
+              <option value="?page={{ page_obj.number }}&sort_by=id" {% ifequal sort_by 'id' %}selected{% endifequal %}>Id</option>
+              <option value="?page={{ page_obj.number }}&sort_by=name" {% ifequal sort_by 'name' %}selected{% endifequal %}>Name</option>
+            </select>
+        </div>
+    </div>
 
-    {% if list %}
+    {% if object_list %}
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -20,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for tag in list %}
+                {% for tag in object_list %}
                     <tr>
                         <td>{{ tag.id }}</td>
                         <td>{{ tag.name }}</td>
@@ -32,6 +39,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% include 'base/pagination.html' %}
     {% else %}
         <div class="alert alert-info" role="alert">Tag Types not found.</div>
     {% endif %}
