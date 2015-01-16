@@ -1,0 +1,15 @@
+ <nav>
+     <ul class="pager">
+         {% if page_obj.has_previous %}
+         <li><a href="?page={{ page_obj.previous_page_number }}&sort_by={{ sort_by }}">Previous</a></li>
+         {% else %}
+         <li class="disabled"><a href="#">Previous</a></li>
+         {% endif %}
+         <li><a href="#">{{ page_obj.number }}</a></li>
+         {% if page_obj.has_next %}
+         <li><a href="?page={{ page_obj.next_page_number }}&sort_by={{ sort_by }}">Next</a></li>
+         {% else %}
+         <li class="disabled"><a href="#">Next</a></li>
+         {% endif %}
+     </ul>
+ </nav>

@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'index',
     'employee',
     'project',
-    'tag'
+    'tag',
+    'base',
 )
 
 MIDDLEWARE_CLASSES = (

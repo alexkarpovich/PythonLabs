@@ -1,0 +1,18 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'project:position-list' %}">Positions</a></li>
+    <li>Confirm Delete Project Position</li>
+{% endblock %}
+
+
+{% block content %}
+    <form  method="post">
+        {% csrf_token %}
+         <div class="form-group">
+                   <p>Are you sure you want to delete "{{ object }}"?</p>
+         </div>
+
+        <button type="submit" class="btn btn-primary btn-sm">Confirm</button>
+    </form>
+{% endblock %}
