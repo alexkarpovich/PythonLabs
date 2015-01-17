@@ -3,6 +3,7 @@ from django.views.generic import ListView
 
 class BaseListView(ListView):
     paginate_by = 10
+    model = None
 
     def get_queryset(self):
         sort_by = self.request.GET.get('sort_by')

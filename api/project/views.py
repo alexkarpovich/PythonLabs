@@ -1,4 +1,3 @@
-from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
@@ -47,6 +46,7 @@ class ParticipationViewDelete(DeleteView):
     model = ProjectParticipation
     success_url = reverse_lazy('project:participation-list')
 
+
 # Project position
 class PositionViewList(BaseListView):
     model = ProjectPosition
@@ -57,6 +57,7 @@ class PositionViewCreate(CreateView):
     model = ProjectPosition
     success_url = reverse_lazy('project:position-list')
     template_name = 'project_position/add.html'
+
 
 class PositionViewUpdate(UpdateView):
     model = ProjectPosition
