@@ -7,12 +7,12 @@ class EmployeeForm(ModelForm):
         model = Employee
         fields = ['first_name', 'last_name', 'email', 'summary_description', 'skype', 'phone']
         widgets = {
-            'first_name': TextInput(attrs={'class': 'form-control'}),
-            'last_name': TextInput(attrs={'class': 'form-control'}),
-            'email': TextInput(attrs={'class': 'form-control', 'type': 'email'}),
-            'summary_description': Textarea(attrs={'class': 'form-control'}),
-            'skype': TextInput(attrs={'class': 'form-control'}),
-            'phone': TextInput(attrs={'class': 'form-control', 'type': 'number'}),
+            'first_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
+            'last_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
+            'email': TextInput(attrs={'class': 'form-control', 'type': 'email', 'placeholder': 'Email'}),
+            'summary_description': Textarea(attrs={'class': 'form-control', 'placeholder': 'Summary'}),
+            'skype': TextInput(attrs={'class': 'form-control', 'placeholder': 'Skype'}),
+            'phone': TextInput(attrs={'class': 'form-control', 'type': 'number', 'placeholder': 'Phone'}),
         }
 
 
@@ -21,7 +21,7 @@ class LanguageForm(ModelForm):
         model = Language
         fields = ['name']
         widgets = {
-            'name': TextInput(attrs={'class': 'form-control'}),
+            'name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
         }
 
 
@@ -30,5 +30,5 @@ class EducationForm(ModelForm):
         model = Education
         fields = ['name']
         widgets = {
-            'name': TextInput(attrs={'class': 'form-control'}),
+            'name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
         }
