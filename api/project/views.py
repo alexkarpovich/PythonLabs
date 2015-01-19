@@ -7,6 +7,7 @@ from api.base.views import BaseListView
 
 class ProjectRoleViewList(BaseListView):
     model = ProjectRole
+    sort_fields = ['id','name']
 
 
 class ProjectRoleViewCreate(CreateView):
@@ -28,6 +29,7 @@ class ProjectRoleViewDelete(DeleteView):
 
 class ParticipationViewList(BaseListView):
     model = ProjectParticipation
+    sort_fields = ['id', 'name']
 
 
 class ParticipationViewCreate(CreateView):
