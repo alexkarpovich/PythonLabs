@@ -7,17 +7,9 @@
 {% block content %}
     <div class="inline-group">
         <div class="col-md-2"><a href="{% url 'employee:employee_add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Create new employee</a></div>
-        <div class="col-md-2 input-group">
-        <div class="input-group-addon">Sort by: </div>
-            <select class="form-control bg-primary input-sm" onchange="document.location=this.options[this.selectedIndex].value">
-              <option value="?page={{ page_obj.number }}&sort_by=id" {% ifequal sort_by 'id' %}selected{% endifequal %}>Id</option>
-              <option value="?page={{ page_obj.number }}&sort_by=first_name" {% ifequal sort_by 'first_name' %}selected{% endifequal %}>First Name</option>
-              <option value="?page={{ page_obj.number }}&sort_by=last_name" {% ifequal sort_by 'last_name' %}selected{% endifequal %}>Last Name</option>
-              <option value="?page={{ page_obj.number }}&sort_by=email" {% ifequal sort_by 'email' %}selected{% endifequal %}>Email</option>
-              <option value="?page={{ page_obj.number }}&sort_by=skype" {% ifequal sort_by 'skype' %}selected{% endifequal %}>Skype</option>
-              <option value="?page={{ page_obj.number }}&sort_by=phone" {% ifequal sort_by 'phone' %}selected{% endifequal %}>Phone</option>
-            </select>
-        </div>
+        {% if fields %}
+        {% include 'base/sort_by.html' %}
+        {% endif %}
     </div>
 
     {% if list %}

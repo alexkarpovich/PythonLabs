@@ -81,7 +81,7 @@ SKILL_LEVEL_CHOICES = (
 
 
 class EmployeeTag(models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, related_name='employee')
     tag = models.ForeignKey(Tag)
     level = models.CharField(max_length=1, choices=SKILL_LEVEL_CHOICES)
     experience = models.IntegerField()

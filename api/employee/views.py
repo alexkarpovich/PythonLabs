@@ -9,6 +9,7 @@ class EmployeeViewList(BaseListView):
     model = Employee
     fields = ['first_name', 'last_name', 'skype', 'phone']
     context_object_name = 'list'
+    sort_fields = ['id', 'first_name', 'last_name', 'skype', 'phone']
 
 
 class EmployeeViewAdd(FormView):
@@ -37,6 +38,7 @@ class LanguageViewList(BaseListView):
     model = Language
     fields = ['name']
     context_object_name = 'list'
+    sort_fields = ['name']
 
 
 class LanguageViewAdd(FormView):
@@ -65,6 +67,7 @@ class EducationViewList(BaseListView):
     model = Education
     fields = ['name']
     context_object_name = 'list'
+    sort_fields = ['id', 'name']
 
 
 class EducationViewAdd(FormView):
@@ -93,6 +96,7 @@ class EmployeeTagViewList(BaseListView):
     model = EmployeeTag
     fields = ['name']
     context_object_name = 'list'
+    sort_fields = ['id', 'name']
 
 
 class EmployeeTagViewAdd(FormView):
