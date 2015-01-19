@@ -10,6 +10,7 @@ class TagViewList(BaseListView):
     fields = ['name']
     context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
+    sort_fields = ['id', 'name']
 
 
 class TagViewUpdate(UpdateView):
@@ -39,6 +40,7 @@ class TagCategoryViewList(BaseListView):
     fields = ['name']
     context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
+    sort_fields = [u'id', u'name', 'tag_type']
 
 
 class TagCategoryViewUpdate(UpdateView):
@@ -68,6 +70,7 @@ class TagTypeViewList(BaseListView):
     fields = ['name']
     context_object_name = 'list'
     success_url = reverse_lazy('tag:type-list')
+    sort_fields = ['id', 'name']
 
 
 class TagTypeViewUpdate(UpdateView):

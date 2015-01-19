@@ -9,13 +9,9 @@
 <div class="project-roles">
     <div class="inline-group">
         <div class="col-md-2"><a href="{% url 'project:role-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project role</a></div>
-        <div class="col-md-2 input-group">
-        <div class="input-group-addon">Sort by: </div>
-            <select class="form-control bg-primary input-sm" onchange="document.location=this.options[this.selectedIndex].value">
-              <option value="?page={{ page_obj.number }}&sort_by=id" {% ifequal sort_by 'id' %}selected{% endifequal %}>Id</option>
-              <option value="?page={{ page_obj.number }}&sort_by=name" {% ifequal sort_by 'name' %}selected{% endifequal %}>Name</option>
-            </select>
-        </div>
+        {% if fields %}
+        {% include 'base/sort_by.html' %}
+        {% endif %}
     </div>
     {% if object_list %}
     <table class="table table-striped table-hover">
