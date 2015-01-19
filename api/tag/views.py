@@ -8,6 +8,7 @@ from api.base.views import BaseListView
 class TagViewList(BaseListView):
     model = Tag
     success_url = reverse_lazy('tag:tag-list')
+    sort_fields = ['id', 'name']
 
 
 class TagViewUpdate(UpdateView):
@@ -35,6 +36,7 @@ class TagViewCreate(FormView):
 class TagCategoryViewList(BaseListView):
     model = TagCategory
     success_url = reverse_lazy('tag:tag-list')
+    sort_fields = [u'id', u'name', 'tag_type']
 
 
 class TagCategoryViewUpdate(UpdateView):
@@ -62,6 +64,7 @@ class TagCategoryViewCreate(FormView):
 class TagTypeViewList(BaseListView):
     model = TagType
     success_url = reverse_lazy('tag:type-list')
+    sort_fields = ['id', 'name']
 
 
 class TagTypeViewUpdate(UpdateView):

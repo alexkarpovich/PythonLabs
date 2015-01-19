@@ -4,6 +4,7 @@ from django.views.generic import ListView
 class BaseListView(ListView):
     paginate_by = 10
     model = None
+    sort_fields = None
 
     def get_queryset(self):
         sort_by = self.request.GET.get('sort_by')
@@ -17,4 +18,8 @@ class BaseListView(ListView):
         sort_by = self.request.GET.get('sort_by')
         fields = self.model._meta.get_all_field_names()
         context['sort_by'] = 'id' if sort_by not in fields else sort_by
+        if set(self.sort_fields).issubset(set(fields)) :
+            context['fields'] = self.sort_fields
+        else:
+            context['fields'] = fields
         return context
