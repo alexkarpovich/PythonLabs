@@ -1,0 +1,17 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'employee:employee_list' %}">Languages</a></li>
+    <li>Delete Language</li>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'employee:language_delete' pk=object.id %}" method="post">
+        {% csrf_token %}
+         <div class="form-group">
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+         </div>
+
+        <button type="submit" class="btn btn-primary btn-sm">Confirm</button>
+    </form>
+{% endblock %}

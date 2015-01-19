@@ -7,6 +7,8 @@ from api.base.views import BaseListView
 
 class TagViewList(BaseListView):
     model = Tag
+    fields = ['name']
+    context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
 
 
@@ -34,6 +36,8 @@ class TagViewCreate(FormView):
 
 class TagCategoryViewList(BaseListView):
     model = TagCategory
+    fields = ['name']
+    context_object_name = 'list'
     success_url = reverse_lazy('tag:tag-list')
 
 
@@ -61,6 +65,8 @@ class TagCategoryViewCreate(FormView):
 
 class TagTypeViewList(BaseListView):
     model = TagType
+    fields = ['name']
+    context_object_name = 'list'
     success_url = reverse_lazy('tag:type-list')
 
 
@@ -84,4 +90,3 @@ class TagTypeViewCreate(FormView):
     def form_valid(self, form):
         form.save()
         return super(TagTypeViewCreate, self).form_valid(form)
-
