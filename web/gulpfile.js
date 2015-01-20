@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 
 
 var paths = {
-    lessPath: './spa/static/less',
+    lessPath: './public/less',
     bowerPath: './public/bower_components',
     fonts: ['./public/bower_components/bootstrap/fonts/*', './public/bower_components/font-awesome/fonts/*']
 };
@@ -23,7 +23,7 @@ var paths = {
 var jsLibs = require('./modules/jslibs');
 
 gulp.task('clean', function(done) {
-    del(['./spa/static/css/*', './spa/static/js/dist/*', './config/common.ini', './spa/static/fonts/*'], {force: true}, done);
+    del(['./api/static/css/*', './api/static/js/dist/*', './config/common.ini', './api/static/fonts/*'], {force: true}, done);
 });
 
 gulp.task('copy:fonts', function() {
@@ -38,7 +38,7 @@ gulp.task('concat:devLibs', function() {
 });
 
 gulp.task('less', function() {
-    return gulp.src('./public/less/spa-styles.less')
+    return gulp.src('./public/less/styles.less')
         .pipe(plugins.plumber())
         .pipe(plugins.less({
             paths: [
@@ -51,7 +51,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('jshint', function() {
-    return gulp.src(['./public/js/src/**/*.js'])
+    return gulp.src(['./public/js/src/**/*.*'])
         .pipe(plugins.jshint('.jshintrc'))
         .pipe(plugins.jshint.reporter('jshint-summary', {
             fileColCol: ',bold',
@@ -114,7 +114,7 @@ gulp.task('watch', ['browserify'], function (done) {
 gulp.task('livereload', function () {
     var lrserver = plugins.livereload();
 
-    gulp.watch('./public/js/src/**/*.js').on('change', function(file) {
+    gulp.watch('./public/js/src/**/*.*').on('change', function(file) {
         lrserver.changed(file.path);
     });
 });
