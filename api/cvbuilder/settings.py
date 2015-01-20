@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../media')
+
+MEDIA_URL = '/media/'
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'x': {'size': (100, 100), 'crop': True},
+        '2x': {'size': (200, 200), 'crop': True},
+    },
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -48,6 +60,7 @@ INSTALLED_APPS = (
     'project',
     'tag',
     'base',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
