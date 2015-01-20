@@ -2,7 +2,9 @@
 <div class="input-group-addon">Sort by: </div>
     <select class="form-control bg-primary input-sm" onchange="document.location=this.options[this.selectedIndex].value">
         {% for field in fields %}
-        <option value="?page={{ page_obj.number }}&sort_by={{ field }}" {% ifequal sort_by field %}selected{% endifequal %}>{{ field }}</option>
+            <option value="?page={{ page_obj.number }}&sort_by={{ field.name }}" {% ifequal sort_by field.name %}selected{% endifequal %}>
+                {{ field.value }}
+            </option>
         {% endfor %}
     </select>
 </div>

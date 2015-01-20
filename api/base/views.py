@@ -18,8 +18,15 @@ class BaseListView(ListView):
         sort_by = self.request.GET.get('sort_by')
         fields = self.model._meta.get_all_field_names()
         context['sort_by'] = 'id' if sort_by not in fields else sort_by
-        if set(self.sort_fields).issubset(set(fields)) :
-            context['fields'] = self.sort_fields
+        if set(self.sort_fields).issubset(set(fields)):
+            context['fields'] = list(self.sort_fields)
         else:
-            context['fields'] = fields
+            context['fields'] = list(fields)
+
+        for i in range(len(context['fields'])):
+            context['fields'][i] = {
+                'name': context['fields'][i],
+                'value': context['fields'][i].capitalize().replace('_', ' ')
+            }
+
         return context

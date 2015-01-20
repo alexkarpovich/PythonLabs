@@ -1,5 +1,5 @@
-from models import Employee, Language, Education
-from django.forms import ModelForm, TextInput, Select, Textarea
+from models import Employee, Language, Education, EmployeeTag
+from django.forms import ModelForm, TextInput, Textarea, Select
 
 
 class EmployeeForm(ModelForm):
@@ -31,4 +31,17 @@ class EducationForm(ModelForm):
         fields = ['name']
         widgets = {
             'name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
+        }
+
+
+class EmployeeTagForm(ModelForm):
+    class Meta:
+        model = EmployeeTag
+        fields = ['employee', 'tag', 'level', 'experience', 'last_used']
+        widgets = {
+            'employee': Select(attrs={'class': 'form-control'}),
+            'tag': Select(attrs={'class': 'form-control'}),
+            'level': Select(attrs={'class': 'form-control'}),
+            'experience': TextInput(attrs={'class': 'form-control', 'placeholder': 'Experience(years)', 'type': 'number'}),
+            'last_used': TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Used', 'type': 'date'}),
         }

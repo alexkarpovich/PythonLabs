@@ -3,7 +3,8 @@ from django.conf.urls import patterns, url
 import views
 from .views import EmployeeViewList, EmployeeViewUpdate, EmployeeViewAdd, EmployeeViewDelete, \
     LanguageViewList, LanguageViewAdd, LanguageViewUpdate, LanguageViewDelete, \
-    EducationViewList, EducationViewAdd, EducationViewUpdate, EducationViewDelete
+    EducationViewList, EducationViewAdd, EducationViewUpdate, EducationViewDelete, \
+    EmployeeTagViewList, EmployeeTagViewAdd, EmployeeTagViewUpdate, EmployeeTagViewDelete
 
 urlpatterns = patterns('',
     url(r'^$', EmployeeViewList.as_view(), name='employee_list'),
@@ -18,4 +19,8 @@ urlpatterns = patterns('',
     url(r'^education/add/$', EducationViewAdd.as_view(), name='education_add'),
     url(r'^education/edit/(?P<pk>\d+)$', EducationViewUpdate.as_view(), name='education_edit'),
     url(r'^education/delete/(?P<pk>\d+)$', EducationViewDelete.as_view(), name='education_delete'),
+    url(r'^tags/$', EmployeeTagViewList.as_view(), name='employee_tags_list'),
+    url(r'^tag/add/$', EmployeeTagViewAdd.as_view(), name='employee_tag_add'),
+    url(r'^tag/edit/(?P<pk>\d+)$', EmployeeTagViewUpdate.as_view(), name='employee_tag_edit'),
+    url(r'^tag/delete/(?P<pk>\d+)$', EmployeeTagViewDelete.as_view(), name='employee_tag_delete'),
 )

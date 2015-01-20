@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee, Language, EmployeeLanguage, Education, EmployeeEducation
+from .models import Employee, Language, EmployeeLanguage, Education, EmployeeEducation, EmployeeTag
 
 
 class EmployeeAdmin(admin.ModelAdmin):
@@ -11,4 +11,5 @@ admin.site.register(Language)
 admin.site.register(EmployeeLanguage)
 admin.site.register(Education)
 admin.site.register(EmployeeEducation)
+admin.site.register(EmployeeTag)
 

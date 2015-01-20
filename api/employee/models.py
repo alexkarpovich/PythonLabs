@@ -1,4 +1,5 @@
 from django.db import models
+from tag.models import Tag
 
 
 class Employee(models.Model):
@@ -69,3 +70,27 @@ class EmployeeEducation(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.employee.last_name, self.education.name)
+
+
+SKILL_LEVEL_CHOICES = (
+    ('0', 'Novice'),
+    ('1', 'Intern'),
+    ('2', 'Advanced'),
+    ('3', 'Expert'),
+)
+
+
+class EmployeeTag(models.Model):
+    employee = models.ForeignKey(Employee, related_name='employee')
+    tag = models.ForeignKey(Tag)
+    level = models.CharField(max_length=1, choices=SKILL_LEVEL_CHOICES)
+    experience = models.IntegerField()
+    last_used = models.DateField()
+
+    class Meta:
+        db_table = 'employee_tag'
+        unique_together = ('employee', 'tag',)
+
+    def __str__(self):
+        return '{} {}'.format(self.employee.last_name, self.tag.name)
+

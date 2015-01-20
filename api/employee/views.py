@@ -1,5 +1,5 @@
-from forms import EmployeeForm, LanguageForm, EducationForm
-from .models import Employee, Language, Education
+from forms import EmployeeForm, LanguageForm, EducationForm, EmployeeTagForm
+from .models import Employee, Language, Education, EmployeeTag
 from django.views.generic.edit import UpdateView, DeleteView, FormView
 from api.base.views import BaseListView
 from django.core.urlresolvers import reverse_lazy
@@ -9,6 +9,7 @@ class EmployeeViewList(BaseListView):
     model = Employee
     fields = ['first_name', 'last_name', 'skype', 'phone']
     context_object_name = 'list'
+    sort_fields = ['id', 'first_name', 'last_name', 'skype', 'phone']
 
 
 class EmployeeViewAdd(FormView):
@@ -37,6 +38,7 @@ class LanguageViewList(BaseListView):
     model = Language
     fields = ['name']
     context_object_name = 'list'
+    sort_fields = ['name']
 
 
 class LanguageViewAdd(FormView):
@@ -65,6 +67,7 @@ class EducationViewList(BaseListView):
     model = Education
     fields = ['name']
     context_object_name = 'list'
+    sort_fields = ['id', 'name']
 
 
 class EducationViewAdd(FormView):
@@ -87,3 +90,32 @@ class EducationViewUpdate(UpdateView):
 class EducationViewDelete(DeleteView):
     model = Education
     success_url = reverse_lazy('employee:educations_list')
+
+
+class EmployeeTagViewList(BaseListView):
+    model = EmployeeTag
+    fields = ['name']
+    context_object_name = 'list'
+    sort_fields = ['id', 'name']
+
+
+class EmployeeTagViewAdd(FormView):
+    template_name = 'employee/employeetag_add_form.html'
+    form_class = EmployeeTagForm
+    success_url = reverse_lazy('employee:employee_tags_list')
+
+    def form_valid(self, form):
+        form.save()
+        return super(EmployeeTagViewAdd, self).form_valid(form)
+
+
+class EmployeeTagViewUpdate(UpdateView):
+    model = EmployeeTag
+    form_class = EmployeeTagForm
+    template_name = 'employee/employeetag_edit_form.html'
+    success_url = reverse_lazy('employee:employee_tags_list')
+
+
+class EmployeeTagViewDelete(DeleteView):
+    model = EmployeeTag
+    success_url = reverse_lazy('employee:employee_tags_list')
