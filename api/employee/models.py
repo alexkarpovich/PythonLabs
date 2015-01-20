@@ -9,6 +9,7 @@ class Employee(models.Model):
     summary_description = models.TextField()
     skype = models.CharField(max_length=64)
     phone = models.CharField(max_length=64, blank=True, default=None)
+    photo = models.FileField(upload_to='.')
 
     class Meta:
         db_table = 'employee'

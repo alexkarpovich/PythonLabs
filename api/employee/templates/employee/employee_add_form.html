@@ -6,7 +6,7 @@
 {% endblock %}
 sfdsdfs
 {% block content %}
-    <form action="{% url 'employee:employee_add' %}" method="post">
+    <form action="{% url 'employee:employee_add' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
             <div class="bg-danger">
@@ -49,6 +49,13 @@ sfdsdfs
             </div>
             <label for="{{ form.phone.id_for_label }}">Phone:</label>
             {{ form.phone }}
+        </div>
+        <div class="form-group">
+            <div class="bg-danger">
+                {{ form.phone.errors }}
+            </div>
+            <label for="{{ form.phone.id_for_label }}">Photo:</label>
+            {{ form.photo }}
         </div>
         <button type="submit" class="btn btn-primary btn-sm">Add Employee</button>
     </form>

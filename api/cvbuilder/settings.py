@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'static/upload')
+MEDIA_URL = '/upload/'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = (
     'project',
     'tag',
     'base',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
