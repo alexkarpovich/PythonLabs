@@ -13,7 +13,7 @@ class EmployeeForm(ModelForm):
             'summary_description': Textarea(attrs={'class': 'form-control', 'placeholder': 'Summary'}),
             'skype': TextInput(attrs={'class': 'form-control', 'placeholder': 'Skype'}),
             'phone': TextInput(attrs={'class': 'form-control', 'type': 'number', 'placeholder': 'Phone'}),
-            'photo': FileInput(attrs={'class': 'form-control', 'type': 'file', 'placeholder': 'Photo'}),
+            'photo': FileInput(attrs={'class': '', 'type': 'file', 'value': 'Choose photo'}),
         }
 
 
