@@ -1,7 +1,8 @@
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy
 
-from models import ProjectRole, ProjectParticipation, ProjectPosition
+from models import ProjectRole, ProjectParticipation, ProjectPosition, ProjectTag
+from .forms import ProjectTagForm
 from api.base.views import BaseListView
 
 
@@ -72,3 +73,34 @@ class PositionViewDelete(DeleteView):
     model = ProjectPosition
     success_url = reverse_lazy('project:position-list')
     template_name = 'project_position/confirm_delete.html'
+
+
+# Project tag
+class ProjectTagViewList(BaseListView):
+    model = ProjectTag
+    sort_fields = ['tag', 'project']
+
+
+class ProjectTagViewCreate(FormView):
+    model = ProjectTag
+    form_class = ProjectTagForm
+    success_url = reverse_lazy('project:tag-list')
+    template_name = 'project/projecttag_add_form.html'
+
+    def form_valid(self, form):
+        form.save()
+        return super(ProjectTagViewCreate, self).form_valid(form)
+
+
+class ProjectTagViewUpdate(UpdateView):
+    model = ProjectTag
+    form_class = ProjectTagForm
+    success_url = reverse_lazy('project:tag-list')
+    template_name = 'project/projecttag_edit_form.html'
+
+
+class ProjectTagViewDelete(DeleteView):
+    model = ProjectTag
+    success_url = reverse_lazy('project:tag-list')
+    template_name = 'project/projecttag_confirm_delete.html'
+
