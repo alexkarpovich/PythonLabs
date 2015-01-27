@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from models import ProjectRole, ProjectParticipation, ProjectPosition, ProjectTag
 from .forms import ProjectTagForm
-from api.base.views import BaseListView
+from base.views import BaseListView
 
 
 class ProjectRoleViewList(BaseListView):
