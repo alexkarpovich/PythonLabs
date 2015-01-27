@@ -1,0 +1,52 @@
+{% extends 'index/layout.html' %}
+
+{% load add_attributes %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'employee:employee_tags_list' %}">Employee Tags</a></li>
+    <li>Edit Employee Tag</li>
+{% endblock %}
+
+{% block content %}
+    {% if form %}
+        <form action="{% url 'employee:employee_tag_edit' pk=object.pk %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="bg-danger">
+                    {{ form.employee.errors }}
+                </div>
+                <label for="{{ form.employee.id_for_label }}">Employee:</label>
+                {{ form.employee }}
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    {{ form.tag.errors }}
+                </div>
+                <label for="{{ form.tag.id_for_label }}">Tag:</label>
+                {{ form.tag }}
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    {{ form.level.errors }}
+                </div>
+                <label for="{{ form.level.id_for_label }}">Level:</label>
+                {{ form.level }}
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    {{ form.experience.errors }}
+                </div>
+                <label for="{{ form.experience.id_for_label }}">Experience:</label>
+                {{ form.experience }}
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    {{ form.last_used.errors }}
+                </div>
+                <label for="{{ form.last_used.id_for_label }}">Last Used:</label>
+                {{ form.last_used }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Edit Employee Tag</button>
+        </form>
+    {% endif %}
+{% endblock %}

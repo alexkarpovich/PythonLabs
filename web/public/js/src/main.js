@@ -8,6 +8,7 @@ require('./ita/ita-embedded-data/ita-embedded-data');
 require('./ita/ita-form/ita-form');
 require('./ita/ita-loading/ita-loading');
 require('./ita/ita-messenger/ita-messenger');
+require('./ita/ita-datepicker/ita-datepicker');
 require('./ita/ita-modal/ita-modal');
 require('./menu/top-menu/top-menu');
 require('./user/user');
@@ -23,6 +24,7 @@ domready(function () {
             'ItaForm',
             'ItaLoading',
             'ItaMessenger',
+            'ItaDatePicker',
             'ItaModal',
             'TopMenu',
             'User',

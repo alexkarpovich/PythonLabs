@@ -1,0 +1,24 @@
+{% extends 'index/layout.html' %}
+
+{% load add_attributes %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'tag:type-list' %}">Tag Types</a></li>
+    <li>Add New Tag Type</li>
+{% endblock %}
+
+{% block content %}
+    {% if form %}
+        <form action="{% url 'tag:type-add' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="bg-danger">
+                    {{ form.name.errors }}
+                </div>
+                <label for="{{ form.name.id_for_label }}">Name:</label>
+                {{ form.name }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Add New Tag</button>
+        </form>
+    {% endif %}
+{% endblock %}

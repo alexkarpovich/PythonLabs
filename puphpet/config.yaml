@@ -63,6 +63,8 @@ server:
     packages:
         - vim
         - python-psycopg2
+        - build-dep
+        - python-imaging
 users_groups:
     install: '1'
     groups: {  }
@@ -255,4 +257,3 @@ solr:
     settings:
         version: 4.10.2
         port: '8984'
-

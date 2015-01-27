@@ -1,32 +1,43 @@
 {% extends 'index/layout.html' %}
 
+{% block breadcrumbs %}
+    <li>Project</li>
+    <li>Roles</li>
+{% endblock %}
+
 {% block content %}
 <div class="project-roles">
-    <p>
-        <a href="{% url 'project:role-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add</a>
-    </p>
-
-    <table class="table">
+    <div class="inline-group">
+        <div class="col-md-2"><a href="{% url 'project:role-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project role</a></div>
+        {% if fields %}
+        {% include 'base/sort_by.html' %}
+        {% endif %}
+    </div>
+    {% if object_list %}
+    <table class="table table-striped table-hover">
         <thead>
             <th>Id</th>
             <th>Name</th>
             <th>Actions</th>
         </thead>
         <tbody>
-            {% for role in list %}
+            {% for role in object_list %}
                 <tr>
                     <td>{{ role.id }}</td>
                     <td>{{ role.name }}</td>
-                    <td>
-                        <div class="inline-group">
-                            <a href="{% url 'project:role-edit' pk=role.id %}" class="btn btn-xs btn-warning">Edit</a>
-                            <a href="{% url 'project:role-delete' pk=role.id %}" class="btn btn-xs btn-danger">Delete</a>
-                        </div>
+                    <td class="actions">
+                        <a href="{% url 'project:role-edit' pk=role.id %}" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a href="{% url 'project:role-delete' pk=role.id %}" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% include 'base/pagination.html' %}
+    {% else %}
+        <div class="alert alert-info" role="alert">Project roles not found.</div>
+    {% endif %}
+
 </div>
 {% if is_paginated %}
     <div class="pagination">

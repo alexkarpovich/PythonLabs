@@ -1,0 +1,17 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'employee:employee_tags_list' %}">Employee Tags</a></li>
+    <li>Delete Employee Tag</li>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'employee:employee_tag_delete' pk=object.pk %}" method="post">
+        {% csrf_token %}
+         <div class="form-group">
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+         </div>
+
+        <button type="submit" class="btn btn-primary btn-sm">Confirm</button>
+    </form>
+{% endblock %}

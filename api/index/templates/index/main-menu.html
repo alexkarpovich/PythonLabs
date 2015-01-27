@@ -1,11 +1,17 @@
+{% load active %}
 <div class="list-group">
-    <a class="list-group-item" href="{% url 'index:index' %}"><i class="glyphicon glyphicon-home"></i> Home</a>
-    <a class="list-group-item" href="{% url 'employee:employee_list' %}"><i class="glyphicon glyphicon-user"></i> Employees</a>
-    <a class="list-group-item" href="{% url 'project:project-list' %}"><i class="glyphicon glyphicon-th-list"></i> Projects</a>
+    <a class="list-group-item {% navactive request 'index:index' %}" href="{% url 'index:index' %}"><i class="glyphicon glyphicon-home"></i> Home</a>
+    <a class="list-group-item {% navactive request 'employee:employee_list' %}" href="{% url 'employee:employee_list' %}"><i class="glyphicon glyphicon-user"></i> Employees</a>
+    <a class="list-group-item {% navactive request 'employee:employee_tags_list' %}" href="{% url 'employee:employee_tags_list' %}"><i class="glyphicon glyphicon-user"></i> Employee Tags</a>
+    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Projects</a>
     <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Project statuses</a>
-    <a class="list-group-item" href="{% url 'project:role-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project roles</a>
-    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Project positions</a>
-    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Project participations</a>
-    <a class="list-group-item" href="{% url 'employee:languages_list' %}"><i class="glyphicon glyphicon-th-list"></i> Languages</a>
-    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Educations</a>
+    <a class="list-group-item {% navactive request 'project:role-list' %}" href="{% url 'project:role-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project roles</a>
+    <a class="list-group-item {% navactive request 'project:position-list' %}" href="{% url 'project:position-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project positions</a>
+    <a class="list-group-item {% navactive request 'project:participation-list' %}" href="{% url 'project:participation-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project participations</a>
+    <a class="list-group-item {% navactive request 'project:tag-list' %}" href="{% url 'project:tag-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project Tags</a>
+    <a class="list-group-item {% navactive request 'employee:languages_list' %}" href="{% url 'employee:languages_list' %}"><i class="glyphicon glyphicon-th-list"></i> Languages</a>
+    <a class="list-group-item {% navactive request 'employee:educations_list' %}" href="{% url 'employee:educations_list' %}"><i class="glyphicon glyphicon-th-list"></i> Educations</a>
+    <a class="list-group-item {% navactive request 'tag:tag-list' %}" href="{% url 'tag:tag-list' %}"><i class="glyphicon glyphicon-th-list"></i> Tags</a>
+    <a class="list-group-item {% navactive request 'tag:category-list' %}" href="{% url 'tag:category-list' %}"><i class="glyphicon glyphicon-th-list"></i> Tag Categories</a>
+    <a class="list-group-item {% navactive request 'tag:type-list' %}" href="{% url 'tag:type-list' %}"><i class="glyphicon glyphicon-th-list"></i> Tag Types</a>
 </div>

@@ -1,0 +1,43 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li>Tags</li>
+{% endblock %}
+
+
+{% block content %}
+    <div class="inline-group">
+        <div class="col-md-2"><a href="{% url 'tag:tag-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add new tag</a></div>
+        {% if fields %}
+        {% include 'base/sort_by.html' %}
+        {% endif %}
+    </div>
+
+    {% if object_list %}
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tag in object_list %}
+                    <tr>
+                        <td>{{ tag.id }}</td>
+                        <td>{{ tag.name }}</td>
+                        <td class="actions">
+                            <a href="{% url 'tag:tag-edit' pk=tag.id %}" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="{% url 'tag:tag-delete' pk=tag.id %}" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include 'base/pagination.html' %}
+    {% else %}
+        <div class="alert alert-info" role="alert">Tags not found.</div>
+    {% endif %}
+
+{% endblock %}

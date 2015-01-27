@@ -53,3 +53,6 @@ Params to connect to PostgreSQL outside:
 11. SSH - Private key: "/path/to/project/puphpet/files/dot/ssh/id_rsa"
 12. Passphrase: "empty"
 13. Save passphrase: "checked"
+
+Loading data from fixtures
+1. from api folder run: python manage.py  loaddata > fixtures/fixture_name.json

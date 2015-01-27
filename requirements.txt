@@ -2,3 +2,4 @@ Django==1.7.2
 psycopg2==2.5.4
 django-bootstrap3==5.0.3
 django-jquery==1.9.1
+easy-thumbnails==2.2

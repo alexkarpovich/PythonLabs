@@ -1,0 +1,19 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li>Project</li>
+    <li><a href="{% url 'project:participation-list' %}">Participations</a></li>
+    <li>Add</li>
+{% endblock %}
+
+{% block content %}
+    <form name="add-project-participation" method="post" action="{% url 'project:participation-add' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name.errors }}
+            <label for="{{ form.name.id_for_label }}">Participation name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Project participation name">
+        </div>
+        <input type="submit" class="btn btn-primary btn-sm" value="Add participation">
+    </form>
+{% endblock %}

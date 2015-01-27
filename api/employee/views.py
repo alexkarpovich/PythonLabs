@@ -1,68 +1,121 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
-from django.core.context_processors import csrf
-from forms import EmployeeForm, LanguageForm
-from models import Employee, Language
+from forms import EmployeeForm, LanguageForm, EducationForm, EmployeeTagForm
+from .models import Employee, Language, Education, EmployeeTag
+from django.views.generic.edit import UpdateView, DeleteView, FormView
+from base.views import BaseListView
+from django.core.urlresolvers import reverse_lazy
 
 
-def employee_list(request):
-    employees = Employee.objects.all()
-
-    return render(request, 'employee/list.html', {'employees': employees})
-
-
-def employee_add(request):
-    if request.method == "POST":
-        f = EmployeeForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return HttpResponseRedirect('/employee')
-    else:
-        f = EmployeeForm()
-
-    args = {}
-    args.update(csrf(request))
-    args['form'] = f
-
-    return render(request, 'employee/add.html', {'form': EmployeeForm()})
+class EmployeeViewList(BaseListView):
+    model = Employee
+    fields = ['first_name', 'last_name', 'skype', 'phone', 'photo']
+    context_object_name = 'list'
+    sort_fields = ['id', 'first_name', 'last_name', 'skype', 'phone']
 
 
-def employee_edit(request, employee_id):
-    employee = get_object_or_404(Employee, pk=employee_id)
+class EmployeeViewAdd(FormView):
+    template_name = 'employee/employee_add_form.html'
+    form_class = EmployeeForm
+    success_url = reverse_lazy('employee:employee_list')
 
-    return render(request, 'employee/edit.html', {'employee': employee})
-
-
-def employee_delete(request, employee_id):
-    return HttpResponse('Edit delete')
-
-
-def languages_list(request):
-    languages = Language.objects.all()
-
-    return render(request, 'language/list.html', {'languages': languages})
+    def form_valid(self, form):
+        form.save()
+        return super(EmployeeViewAdd, self).form_valid(form)
 
 
-def language_edit(request, language_id):
-    language = get_object_or_404(Language, pk=language_id)
-    return render(request, 'language/edit.html', {'language': language})
+class EmployeeViewUpdate(UpdateView):
+    model = Employee
+    form_class = EmployeeForm
+    template_name = 'employee/employee_edit_form.html'
+    success_url = reverse_lazy('employee:employee_list')
 
 
-def language_add(request):
-    if request.method == "POST":
-        f = LanguageForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return HttpResponseRedirect('/employee/languages')
-    else:
-        f = LanguageForm()
-
-    args = {}
-    args.update(csrf(request))
-    args['form'] = f
-
-    return render(request, 'language/add.html', {'form': f})
+class EmployeeViewDelete(DeleteView):
+    model = Employee
+    success_url = reverse_lazy('employee:employee_list')
 
 
-def language_delete(request, language_id):
-    return HttpResponse('Delete')
+class LanguageViewList(BaseListView):
+    model = Language
+    fields = ['name']
+    context_object_name = 'list'
+    sort_fields = ['name']
+
+
+class LanguageViewAdd(FormView):
+    template_name = 'employee/language_add_form.html'
+    form_class = LanguageForm
+    success_url = reverse_lazy('employee:languages_list')
+
+    def form_valid(self, form):
+        form.save()
+        return super(LanguageViewAdd, self).form_valid(form)
+
+
+class LanguageViewUpdate(UpdateView):
+    model = Language
+    form_class = LanguageForm
+    template_name = 'employee/language_edit_form.html'
+    success_url = reverse_lazy('employee:languages_list')
+
+
+class LanguageViewDelete(DeleteView):
+    model = Language
+    success_url = reverse_lazy('employee:languages_list')
+
+
+class EducationViewList(BaseListView):
+    model = Education
+    fields = ['name']
+    context_object_name = 'list'
+    sort_fields = ['id', 'name']
+
+
+class EducationViewAdd(FormView):
+    template_name = 'employee/education_add_form.html'
+    form_class = EducationForm
+    success_url = reverse_lazy('employee:educations_list')
+
+    def form_valid(self, form):
+        form.save()
+        return super(EducationViewAdd, self).form_valid(form)
+
+
+class EducationViewUpdate(UpdateView):
+    model = Education
+    form_class = EducationForm
+    template_name = 'employee/education_edit_form.html'
+    success_url = reverse_lazy('employee:educations_list')
+
+
+class EducationViewDelete(DeleteView):
+    model = Education
+    success_url = reverse_lazy('employee:educations_list')
+
+
+class EmployeeTagViewList(BaseListView):
+    model = EmployeeTag
+    fields = ['name']
+    context_object_name = 'list'
+    sort_fields = ['id', 'name']
+
+
+class EmployeeTagViewAdd(FormView):
+    template_name = 'employee/employeetag_add_form.html'
+    form_class = EmployeeTagForm
+    success_url = reverse_lazy('employee:employee_tags_list')
+
+    def form_valid(self, form):
+        form.save()
+        return super(EmployeeTagViewAdd, self).form_valid(form)
+
+
+class EmployeeTagViewUpdate(UpdateView):
+    model = EmployeeTag
+    form_class = EmployeeTagForm
+    template_name = 'employee/employeetag_edit_form.html'
+    success_url = reverse_lazy('employee:employee_tags_list')
+
+
+class EmployeeTagViewDelete(DeleteView):
+    model = EmployeeTag
+    success_url = reverse_lazy('employee:employee_tags_list')

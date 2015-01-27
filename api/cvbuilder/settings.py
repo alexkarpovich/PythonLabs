@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../media')
+
+MEDIA_URL = '/media/'
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'x': {'size': (100, 100), 'crop': True},
+        '2x': {'size': (200, 200), 'crop': True},
+    },
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -31,6 +43,17 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+)
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -46,7 +69,9 @@ INSTALLED_APPS = (
     'index',
     'employee',
     'project',
-    'tags'
+    'tag',
+    'base',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,4 +126,9 @@ STATIC_ROOT = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     'static/',
+)
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, "fixtures"),
+    'fixtures/',
 )

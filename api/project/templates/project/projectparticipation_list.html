@@ -1,0 +1,41 @@
+{% extends 'index/layout.html' %}
+
+{% block breadcrumbs %}
+    <li>Project</li>
+    <li>Participations</li>
+{% endblock %}
+
+{% block content %}
+<div class="project-participations">
+    <div class="inline-group">
+        <div class="col-md-2"><a href="{% url 'project:participation-add' %}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Add project participation</a></div>
+        {% if fields %}
+        {% include 'base/sort_by.html' %}
+        {% endif %}
+    </div>
+    {% if object_list %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for participation in object_list %}
+                <tr>
+                    <td>{{ participation.id }}</td>
+                    <td>{{ participation.name }}</td>
+                    <td class="actions">
+                        <a href="{% url 'project:participation-edit' pk=participation.id %}" class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a href="{% url 'project:participation-delete' pk=participation.id %}" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include 'base/pagination.html' %}
+    {% else %}
+        <div class="alert alert-info" role="alert">Project participations not found.</div>
+    {% endif %}
+</div>
+{% endblock %}
