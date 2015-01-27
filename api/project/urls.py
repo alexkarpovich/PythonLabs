@@ -2,10 +2,15 @@ from django.conf.urls import patterns, url
 
 from views import *
 urlpatterns = patterns('',
-    url(r'^$', views.ProjectViewList.as_view(), name='project-list'),
-    url(r'^add/$', views.ProjectViewCreate.as_view(), name='project-add'),
-    url(r'^edit(?P<pk>\d+)/$', views.ProjectViewUpdate.as_view(), name='project-edit'),
-    url(r'^delete/(?P<pk>\d+)$', views.ProjectViewDelete.as_view(), name='project-delete'),
+    url(r'^$', ProjectViewList.as_view(), name='project-list'),
+    url(r'^add/$', ProjectViewCreate.as_view(), name='project-add'),
+    url(r'^edit(?P<pk>\d+)/$', ProjectViewUpdate.as_view(), name='project-edit'),
+    url(r'^delete/(?P<pk>\d+)$', ProjectViewDelete.as_view(), name='project-delete'),
+
+    url(r'^status/$', ProjectStatusViewList.as_view(), name='status-list'),
+    url(r'^status/add/$', ProjectStatusViewCreate.as_view(), name='status-add'),
+    url(r'^status/edit(?P<pk>\d+)/$', ProjectStatusViewUpdate.as_view(), name='status-edit'),
+    url(r'^status/delete/(?P<pk>\d+)$', ProjectStatusViewDelete.as_view(), name='status-delete'),
 
     url(r'^role/list/$', ProjectRoleViewList.as_view(), name='role-list'),
     url(r'^role/add/$', ProjectRoleViewCreate.as_view(), name='role-add'),

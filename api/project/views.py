@@ -1,10 +1,9 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy
 
-from models import ProjectRole, ProjectParticipation, ProjectPosition, ProjectTag
+from models import ProjectRole, ProjectParticipation, ProjectPosition, ProjectTag, Project, ProjectStatus
 from .forms import ProjectTagForm
 from base.views import BaseListView
-from models import ProjectRole, Project
 
 
 class ProjectRoleViewList(BaseListView):
@@ -107,13 +106,13 @@ class ProjectTagViewDelete(DeleteView):
     success_url = reverse_lazy('project:tag-list')
     template_name = 'project/projecttag_confirm_delete.html'
 
-    success_url = reverse_lazy('project:role-list')
-
 
 # Project
-class ProjectViewList(ListView):
+class ProjectViewList(BaseListView):
     model = Project
+    sort_fields = ['id', 'name']
     context_object_name = 'projects'
+    paginate_by = 7
     template_name = 'project/project/list.html'
 
 
@@ -134,3 +133,32 @@ class ProjectViewDelete(DeleteView):
     model = Project
     success_url = reverse_lazy('project:project-list')
     template_name = 'project/project/delete.html'
+
+
+# Project status
+class ProjectStatusViewList(BaseListView):
+    model = ProjectStatus
+    sort_fields = ['id', 'name']
+    context_object_name = 'statuses'
+    paginate_by = 7
+    template_name = 'project/status/list.html'
+
+
+class ProjectStatusViewCreate(CreateView):
+    model = ProjectStatus
+    success_url = reverse_lazy('project:status-list')
+    template_name = 'project/status/add.html'
+
+
+class ProjectStatusViewUpdate(UpdateView):
+    model = ProjectStatus
+    context_object_name = 'status'
+    success_url = reverse_lazy('project:status-list')
+    template_name = 'project/status/edit.html'
+
+
+class ProjectStatusViewDelete(DeleteView):
+    model = ProjectStatus
+    context_object_name = 'status'
+    success_url = reverse_lazy('project:status-list')
+    template_name = 'project/status/delete.html'
