@@ -16,4 +16,9 @@ urlpatterns = patterns('',
     url(r'^position/add/$', PositionViewCreate.as_view(), name='position-add'),
     url(r'^position/edit/(?P<pk>\d+)/$', PositionViewUpdate.as_view(), name='position-edit'),
     url(r'^position/delete/(?P<pk>\d+)/$', PositionViewDelete.as_view(), name='position-delete'),
+
+    url(r'^tag/list/$', ProjectTagViewList.as_view(), name='tag-list'),
+    url(r'^tag/add/$', ProjectTagViewCreate.as_view(), name='tag-add'),
+    url(r'^tag/edit/(?P<pk>\d+)/$', ProjectTagViewUpdate.as_view(), name='tag-edit'),
+    url(r'^tag/delete/(?P<pk>\d+)/$', ProjectTagViewDelete.as_view(), name='tag-delete'),
 )

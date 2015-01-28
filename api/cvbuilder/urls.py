@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^project/', include('project.urls', namespace='project')),
     url(r'^tag/', include('tag.urls', namespace='tag')),
     url(r'^', include('index.urls', namespace='index')),
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

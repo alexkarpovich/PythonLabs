@@ -1,11 +1,11 @@
 from models import Employee, Language, Education, EmployeeTag
-from django.forms import ModelForm, TextInput, Textarea, Select
+from django.forms import ModelForm, TextInput, Textarea, Select, FileInput
 
 
 class EmployeeForm(ModelForm):
     class Meta:
         model = Employee
-        fields = ['first_name', 'last_name', 'email', 'summary_description', 'skype', 'phone']
+        fields = ['first_name', 'last_name', 'email', 'summary_description', 'skype', 'phone', 'photo']
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
             'last_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
@@ -13,6 +13,7 @@ class EmployeeForm(ModelForm):
             'summary_description': Textarea(attrs={'class': 'form-control', 'placeholder': 'Summary'}),
             'skype': TextInput(attrs={'class': 'form-control', 'placeholder': 'Skype'}),
             'phone': TextInput(attrs={'class': 'form-control', 'type': 'number', 'placeholder': 'Phone'}),
+            'photo': FileInput(attrs={'class': '', 'type': 'file', 'value': 'Choose photo'}),
         }
 
 

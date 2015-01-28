@@ -1,5 +1,6 @@
 from django.db import models
 from tag.models import Tag
+from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class Employee(models.Model):
@@ -9,6 +10,7 @@ class Employee(models.Model):
     summary_description = models.TextField()
     skype = models.CharField(max_length=64)
     phone = models.CharField(max_length=64, blank=True, default=None)
+    photo = ThumbnailerImageField(upload_to='./employee/images/', blank=True)
 
     class Meta:
         db_table = 'employee'

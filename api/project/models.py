@@ -1,4 +1,5 @@
 from django.db import models
+from tag.models import Tag
 
 
 class Project(models.Model):
@@ -39,3 +40,15 @@ class ProjectPosition(models.Model):
 
     def __str__(self):
         return '{}'.format(self.name)
+
+
+class ProjectTag(models.Model):
+    project = models.ForeignKey(Project)
+    tag = models.ForeignKey(Tag)
+
+    class Meta:
+        db_table = 'project_tag'
+        unique_together = ('project', 'tag',)
+
+    def __str__(self):
+        return '{} {}'.format(self.project.name, self.tag.name)

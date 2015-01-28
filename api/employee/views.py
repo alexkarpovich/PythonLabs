@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 
 class EmployeeViewList(BaseListView):
     model = Employee
-    fields = ['first_name', 'last_name', 'skype', 'phone']
+    fields = ['first_name', 'last_name', 'skype', 'phone', 'photo']
     context_object_name = 'list'
     sort_fields = ['id', 'first_name', 'last_name', 'skype', 'phone']
 
