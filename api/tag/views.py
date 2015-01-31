@@ -2,7 +2,7 @@ from django.views.generic.edit import UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy
 from .models import Tag, TagType, TagCategory
 from .forms import TagForm, TagCategoryForm, TagTypeForm
-from api.base.views import BaseListView
+from base.views import BaseListView
 
 
 class TagViewList(BaseListView):

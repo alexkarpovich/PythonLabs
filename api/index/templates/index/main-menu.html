@@ -3,8 +3,8 @@
     <a class="list-group-item {% navactive request 'index:index' %}" href="{% url 'index:index' %}"><i class="glyphicon glyphicon-home"></i> Home</a>
     <a class="list-group-item {% navactive request 'employee:employee_list' %}" href="{% url 'employee:employee_list' %}"><i class="glyphicon glyphicon-user"></i> Employees</a>
     <a class="list-group-item {% navactive request 'employee:employee_tags_list' %}" href="{% url 'employee:employee_tags_list' %}"><i class="glyphicon glyphicon-user"></i> Employee Tags</a>
-    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Projects</a>
-    <a class="list-group-item" href="#"><i class="glyphicon glyphicon-th-list"></i> Project statuses</a>
+    <a class="list-group-item {% navactive request 'project:project-list' %}" href="{% url 'project:project-list' %}"><i class="glyphicon glyphicon-list-alt"></i> Projects</a>
+    <a class="list-group-item {% navactive request 'project:status-list' %}" href="{% url 'project:status-list' %}"><i class="glyphicon glyphicon-list-alt"></i> Project statuses</a>
     <a class="list-group-item {% navactive request 'project:role-list' %}" href="{% url 'project:role-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project roles</a>
     <a class="list-group-item {% navactive request 'project:position-list' %}" href="{% url 'project:position-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project positions</a>
     <a class="list-group-item {% navactive request 'project:participation-list' %}" href="{% url 'project:participation-list' %}"><i class="glyphicon glyphicon-th-list"></i> Project participations</a>

@@ -1,0 +1,18 @@
+{% extends 'index/layout.html' %}
+
+{% load add_attributes %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'project:status-list' %}">Projects status</a></li>
+    <li>Create project status</li>
+{% endblock %}
+
+{% block content %}
+    <p>Are you sure you want to delete the project status {{ status }}?</p>
+    <form action="{% url 'project:status-delete' pk=status.id %}" method="post">
+        {% csrf_token %}
+         <button type="submit" class="btn btn-danger btn-sm">Yes, delete</button>
+         <a class="btn btn-primary btn-sm" href="{% url "project:status-list" %}">No, cancel</a>
+    </form>
+{% endblock %}
+
