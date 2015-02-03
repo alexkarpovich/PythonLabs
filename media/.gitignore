@@ -1,1 +1,4 @@
+/employee/images/*
+/project/images/*
 !/employee/images/default.png
+!/project/images/default.jpg
