@@ -1,7 +1,7 @@
 from forms import EmployeeForm, LanguageForm, EducationForm, EmployeeTagForm
 from .models import Employee, Language, Education, EmployeeTag
 from django.views.generic.edit import UpdateView, DeleteView, FormView
-from api.base.views import BaseListView
+from base.views import BaseListView
 from django.core.urlresolvers import reverse_lazy
 
 
