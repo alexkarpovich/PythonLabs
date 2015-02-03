@@ -1,5 +1,6 @@
 from django.db import models
 from tag.models import Tag
+from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class Project(models.Model):
@@ -9,6 +10,7 @@ class Project(models.Model):
     end_date = models.DateField()
     description = models.TextField()
     status = models.ForeignKey('ProjectStatus', blank=False)
+    logo = ThumbnailerImageField(upload_to='./project/images/', blank=True)
 
     def __str__(self):
         return '{}'.format(self.name)

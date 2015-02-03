@@ -6,57 +6,91 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'project:project-edit' pk=project.id %}" method="post">
+    <form action="{% url 'project:project-edit' pk=project.id %}" method="post"  enctype="multipart/form-data">
         {% csrf_token %}
+        <table class="width-100">
+            <tr>
+                <td>
+                    <div class="image-upload">
+                        <label for="{{ form.logo.id_for_label }}">
+                            {% if object.logo.x.url %}
+                                <img class="project-logo" src="{{ object.logo.x.url }}">
+                            {% else %}
+                                <img class="project-logo" src="/media/project/images/default.png" width="100"
+                                     height="100">
+                            {% endif %}
+                        </label>
+                        <input type="file" class="" name="{{ form.logo.html_name }}"
+                               id="{{ form.logo.id_for_label }}" value="Choose logo">
+                    </div>
+                </td>
+                <td class="width-100">
 
-        <div class="form-group {% if form.name.errors %} has-error {% endif %}">
-            {{ form.name.label_tag }}
-             <input type="text" class="form-control" name="{{ form.name.html_name }}" id="{{ form.name.id_for_label }}" placeholder="Name" value="{{ project.name }}">
-            {% for error in form.name.errors %}
-                <label class="text-danger">{{ error }}</label>
-            {% endfor %}
-        </div>
+                    <div class="form-group {% if form.name.errors %} has-error {% endif %}">
+                        {{ form.name.label_tag }}
+                        <input type="text" class="form-control" name="{{ form.name.html_name }}"
+                               id="{{ form.name.id_for_label }}" placeholder="Name" value="{{ project.name }}">
+                        {% for error in form.name.errors %}
+                            <label class="text-danger">{{ error }}</label>
+                        {% endfor %}
+                    </div>
 
-        <div class="form-group {% if form.customer.errors %} has-error {% endif %}">
-            {{ form.customer.label_tag }}
-            <input type="text" class="form-control" name="{{ form.customer.html_name }}" id="{{ form.customer.id_for_label }}" placeholder="Customer" value="{{ project.customer }}">
-            {% for error in form.customer.errors %}
-                <label class="text-danger">{{ error }}</label>
-            {% endfor %}
-        </div>
+                    <div class="form-group {% if form.customer.errors %} has-error {% endif %}">
+                        {{ form.customer.label_tag }}
+                        <input type="text" class="form-control" name="{{ form.customer.html_name }}"
+                               id="{{ form.customer.id_for_label }}" placeholder="Customer"
+                               value="{{ project.customer }}">
+                        {% for error in form.customer.errors %}
+                            <label class="text-danger">{{ error }}</label>
+                        {% endfor %}
+                    </div>
 
-        <div class="form-group {% if form.start_date.errors %} has-error {% endif %}">
-            {{ form.start_date.label_tag }}
-            <input type="text" class="form-control" name="{{ form.start_date.html_name }}" id="{{ form.start_date.id_for_label }}" placeholder="Start date" value="{{ project.start_date }}">
-            {% for error in form.start_date.errors %}
-                <label class="text-danger">{{ error }}</label>
-            {% endfor %}
-        </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
 
-        <div class="form-group {% if form.end_date.errors %} has-error {% endif %}">
-            {{ form.end_date.label_tag }}
-            <input type="text" class="form-control" name="{{ form.end_date.html_name }}" id="{{ form.end_date.id_for_label }}" placeholder="End date" value="{{ project.end_date }}">
-            {% for error in form.end_date.errors %}
-                <label class="text-danger">{{ error }}</label>
-            {% endfor %}
-        </div>
+                    <div class="form-group {% if form.start_date.errors %} has-error {% endif %}">
+                        {{ form.start_date.label_tag }}
+                        <input type="text" class="form-control" name="{{ form.start_date.html_name }}"
+                               id="{{ form.start_date.id_for_label }}" placeholder="Start date"
+                               value="{{ project.start_date }}">
+                        {% for error in form.start_date.errors %}
+                            <label class="text-danger">{{ error }}</label>
+                        {% endfor %}
+                    </div>
 
-        <div class="form-group {% if form.description.errors %} has-error {% endif %}">
-            {{ form.description.label_tag }}
-            <textarea type="text" class="form-control" name="{{ form.description.html_name }}" id="{{ form.description.id_for_label }}" placeholder="Description">{{ project.description }}</textarea>
-            {% for error in form.description.errors %}
-                <label class="text-danger">{{ error }}</label>
-            {% endfor %}
-        </div>
+                    <div class="form-group {% if form.end_date.errors %} has-error {% endif %}">
+                        {{ form.end_date.label_tag }}
+                        <input type="text" class="form-control" name="{{ form.end_date.html_name }}"
+                               id="{{ form.end_date.id_for_label }}" placeholder="End date"
+                               value="{{ project.end_date }}">
+                        {% for error in form.end_date.errors %}
+                            <label class="text-danger">{{ error }}</label>
+                        {% endfor %}
+                    </div>
 
-        <div class="form-group {% if form.status.errors %} has-error {% endif %}">
-            {{ form.status.label_tag }}
-            {{ form.status }}
-            {% for error in form.status.errors %}
-                <label class="text-danger">{{ error }}</label>
-            {% endfor %}
-        </div>
+                    <div class="form-group {% if form.description.errors %} has-error {% endif %}">
+                        {{ form.description.label_tag }}
+                        <textarea type="text" class="form-control" name="{{ form.description.html_name }}"
+                                  id="{{ form.description.id_for_label }}"
+                                  placeholder="Description">{{ project.description }}</textarea>
+                        {% for error in form.description.errors %}
+                            <label class="text-danger">{{ error }}</label>
+                        {% endfor %}
+                    </div>
 
-        <button type="submit" class="btn btn-primary btn-sm">Edit Project</button>
+                    <div class="form-group {% if form.status.errors %} has-error {% endif %}">
+                        {{ form.status.label_tag }}
+                        {{ form.status }}
+                        {% for error in form.status.errors %}
+                            <label class="text-danger">{{ error }}</label>
+                        {% endfor %}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm">Edit Project</button>
+                </td>
+            </tr>
+        </table>
     </form>
 {% endblock %}
