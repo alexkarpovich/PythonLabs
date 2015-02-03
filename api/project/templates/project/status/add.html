@@ -1,0 +1,26 @@
+{% extends 'index/layout.html' %}
+
+{% load add_attributes %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'project:status-list' %}">Projects status</a></li>
+    <li>Create Project status</li>
+{% endblock %}
+
+{% block content %}
+    {% if form %}
+        <form action="{% url 'project:status-add' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group {% if form.name.errors %} has-error {% endif %}">
+                {{ form.name.label_tag }}
+                {{ form.name|add_attributes:"class:form-control,placeholder:Enter name..." }}
+                {% for error in form.name.errors %}
+                    <label class="text-danger">{{ error }}</label>
+                {% endfor %}
+            </div>
+
+             <button type="submit" class="btn btn-primary btn-sm">Create Project status</button>
+        </form>
+    {% endif %}
+{% endblock %}
+
