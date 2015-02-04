@@ -1,9 +1,10 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy
-
-from models import ProjectRole, ProjectParticipation, ProjectPosition, ProjectTag, Project, ProjectStatus
+from models import ProjectRole, ProjectParticipation, ProjectPosition, ProjectTag, Project, ProjectStatus, Membership
 from .forms import ProjectTagForm
 from base.views import BaseListView
+from employee.models import Employee
+from django.views.generic.edit import ModelFormMixin
 
 
 class ProjectRoleViewList(BaseListView):
@@ -127,6 +128,22 @@ class ProjectViewUpdate(UpdateView):
     context_object_name = 'project'
     success_url = reverse_lazy('project:project-list')
     template_name = 'project/project/edit.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectViewUpdate, self).get_context_data(**kwargs)
+        context["employees"] = Employee.objects.all()
+
+        return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        Membership.objects.filter(project = self.object).delete()
+        for member_id in form.data.getlist('members[]'):
+            membership = Membership()
+            membership.project = self.object
+            membership.employee = Employee.objects.get(pk=member_id)
+            membership.save()
+        return super(ModelFormMixin, self).form_valid(form)
 
 
 class ProjectViewDelete(DeleteView):
