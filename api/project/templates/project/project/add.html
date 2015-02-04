@@ -9,57 +9,79 @@
 
 {% block content %}
     {% if form %}
-        <form action="{% url 'project:project-add' %}" method="post">
+        <form action="{% url 'project:project-add' %}" method="post"  enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="form-group {% if form.name.errors %} has-error {% endif %}">
-                {{ form.name.label_tag }}
-                {{ form.name|add_attributes:"class:form-control,placeholder:Enter name..." }}
-                {% for error in form.name.errors %}
-                    <label class="text-danger">{{ error }}</label>
-                {% endfor %}
-            </div>
+            <table class="width-100">
+                <tr>
+                    <td>
+                        <div class="image-upload">
+                            <label for="{{ form.logo.id_for_label }}">
+                                <img src="/media/project/images/default.jpg" width="100" height="100">
+                            </label>
+                            <input type="file" class="" name="{{ form.logo.html_name }}"
+                                   id="{{ form.logo.id_for_label }}" value="Choose logo">
+                        </div>
+                    </td>
+                    <td class="width-100">
 
-            <div class="form-group {% if form.customer.errors %} has-error {% endif %}">
-                {{ form.customer.label_tag }}
-                {{ form.customer|add_attributes:"class:form-control,placeholder:Enter customer..." }}
-                {% for error in form.customer.errors %}
-                    <label class="text-danger">{{ error }}</label>
-                {% endfor %}
-            </div>
+                        <div class="form-group {% if form.name.errors %} has-error {% endif %}">
+                            {{ form.name.label_tag }}
+                            {{ form.name|add_attributes:"class:form-control,placeholder:Enter name..." }}
+                            {% for error in form.name.errors %}
+                                <label class="text-danger">{{ error }}</label>
+                            {% endfor %}
+                        </div>
 
-            <div class="form-group {% if form.start_date.errors %} has-error {% endif %}">
-                {{ form.start_date.label_tag }}
-                {{ form.start_date|add_attributes:"class:form-control,placeholder:Enter start date..." }}
-                {% for error in form.start_date.errors %}
-                    <label class="text-danger">{{ error }}</label>
-                {% endfor %}
-            </div>
+                        <div class="form-group {% if form.customer.errors %} has-error {% endif %}">
+                            {{ form.customer.label_tag }}
+                            {{ form.customer|add_attributes:"class:form-control,placeholder:Enter customer..." }}
+                            {% for error in form.customer.errors %}
+                                <label class="text-danger">{{ error }}</label>
+                            {% endfor %}
+                        </div>
 
-            <div class="form-group {% if form.end_date.errors %} has-error {% endif %}">
-                {{ form.end_date.label_tag }}
-                {{ form.end_date|add_attributes:"class:form-control,placeholder:Enter end date..." }}
-                {% for error in form.end_date.errors %}
-                    <label class="text-danger">{{ error }}</label>
-                {% endfor %}
-            </div>
 
-            <div class="form-group {% if form.description.errors %} has-error {% endif %}">
-                {{ form.description.label_tag }}
-                {{ form.description|add_attributes:"class:form-control,placeholder:Enter description..." }}
-                {% for error in form.description.errors %}
-                    <label class="text-danger">{{ error }}</label>
-                {% endfor %}
-            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
 
-            <div class="form-group {% if form.status.errors %} has-error {% endif %}">
-                {{ form.status.label_tag }}
-                {{ form.status|add_attributes:"class:form-control" }}
-                {% for error in form.status.errors %}
-                    <label class="text-danger">{{ error }}</label>
-                {% endfor %}
-            </div>
+                        <div class="form-group {% if form.start_date.errors %} has-error {% endif %}">
+                            {{ form.start_date.label_tag }}
+                            {{ form.start_date|add_attributes:"class:form-control,placeholder:Enter start date..." }}
+                            {% for error in form.start_date.errors %}
+                                <label class="text-danger">{{ error }}</label>
+                            {% endfor %}
+                        </div>
 
-             <button type="submit" class="btn btn-primary btn-sm">Create Project</button>
+                        <div class="form-group {% if form.end_date.errors %} has-error {% endif %}">
+                            {{ form.end_date.label_tag }}
+                            {{ form.end_date|add_attributes:"class:form-control,placeholder:Enter end date..." }}
+                            {% for error in form.end_date.errors %}
+                                <label class="text-danger">{{ error }}</label>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group {% if form.description.errors %} has-error {% endif %}">
+                            {{ form.description.label_tag }}
+                            {{ form.description|add_attributes:"class:form-control,placeholder:Enter description..." }}
+                            {% for error in form.description.errors %}
+                                <label class="text-danger">{{ error }}</label>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group {% if form.status.errors %} has-error {% endif %}">
+                            {{ form.status.label_tag }}
+                            {{ form.status|add_attributes:"class:form-control" }}
+                            {% for error in form.status.errors %}
+                                <label class="text-danger">{{ error }}</label>
+                            {% endfor %}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sm">Create Project</button>
+                    </td>
+                </tr>
+            </table>
         </form>
     {% endif %}
 {% endblock %}
