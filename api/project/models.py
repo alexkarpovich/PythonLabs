@@ -19,6 +19,9 @@ class Project(models.Model):
 class ProjectStatus(models.Model):
     name = models.CharField(max_length=64, blank=False)
 
+    class Meta():
+        ordering = ['name']
+
     def __str__(self):
         return '{}'.format(self.name)
 

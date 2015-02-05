@@ -110,7 +110,7 @@ class ProjectTagViewDelete(DeleteView):
 # Project
 class ProjectViewList(BaseListView):
     model = Project
-    sort_fields = ['id', 'name']
+    sort_fields = ['id', 'name', 'customer', 'start_date', 'end_date', 'status']
     context_object_name = 'projects'
     paginate_by = 7
     template_name = 'project/project/list.html'
