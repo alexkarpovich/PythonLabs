@@ -1,6 +1,7 @@
 from django.db import models
 from tag.models import Tag
 from easy_thumbnails.fields import ThumbnailerImageField
+from employee.models import Employee
 
 
 class Project(models.Model):
@@ -11,9 +12,18 @@ class Project(models.Model):
     description = models.TextField()
     status = models.ForeignKey('ProjectStatus', blank=False)
     logo = ThumbnailerImageField(upload_to='./project/images/', blank=True)
+    members = models.ManyToManyField(Employee, through='Membership', blank=True)
 
     def __str__(self):
         return '{}'.format(self.name)
+
+
+class Membership(models.Model):
+    class Meta:
+        auto_created = True
+
+    employee = models.ForeignKey(Employee)
+    project = models.ForeignKey(Project)
 
 
 class ProjectStatus(models.Model):

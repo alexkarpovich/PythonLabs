@@ -1,5 +1,7 @@
 {% extends 'index/layout.html' %}
 
+{% load is_member %}
+
 {% block breadcrumbs %}
     <li><a href="{% url 'project:project-list' %}">Employees</a></li>
     <li>Edit Employee</li>
@@ -8,15 +10,17 @@
 {% block content %}
     <form action="{% url 'project:project-edit' pk=project.id %}" method="post"  enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="inline">
+        <ul class="column">
         <table class="width-100">
             <tr>
                 <td>
                     <div class="image-upload">
                         <label for="{{ form.logo.id_for_label }}">
-                            {% if object.logo.x.url %}
-                                <img class="project-logo" src="{{ object.logo.x.url }}">
+                            {% if project.logo.x.url %}
+                                <img class="project-logo" src="{{ project.logo.x.url }}">
                             {% else %}
-                                <img class="project-logo" src="/media/project/images/default.png" width="100"
+                                <img class="project-logo" src="/media/project/images/default.jpg" width="100"
                                      height="100">
                             {% endif %}
                         </label>
@@ -54,7 +58,7 @@
                         {{ form.start_date.label_tag }}
                         <input type="text" class="form-control" name="{{ form.start_date.html_name }}"
                                id="{{ form.start_date.id_for_label }}" placeholder="Start date"
-                               value="{{ project.start_date }}">
+                               value="{{ project.start_date|date:"SHORT_DATE_FORMAT"}}">
                         {% for error in form.start_date.errors %}
                             <label class="text-danger">{{ error }}</label>
                         {% endfor %}
@@ -64,7 +68,7 @@
                         {{ form.end_date.label_tag }}
                         <input type="text" class="form-control" name="{{ form.end_date.html_name }}"
                                id="{{ form.end_date.id_for_label }}" placeholder="End date"
-                               value="{{ project.end_date }}">
+                               value="{{ project.end_date|date:"SHORT_DATE_FORMAT" }}">
                         {% for error in form.end_date.errors %}
                             <label class="text-danger">{{ error }}</label>
                         {% endfor %}
@@ -92,5 +96,28 @@
                 </td>
             </tr>
         </table>
+        </ul>
+        <ul class="column">
+            <h4>Project members: </h4>
+            {% if employees %}
+            <table class="table">
+            <thead>
+                <th>Member</th>
+                <th>Full Name</th>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td><input type="checkbox" name="members[]" value="{{ employee.pk }}" {% is_member employee project.members.all %}></td>
+                <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+            {% else %}
+                <div class="alert alert-info" role="alert">Have no employees yet</div>
+            {% endif %}
+        </ul>
+        <div>
     </form>
 {% endblock %}
